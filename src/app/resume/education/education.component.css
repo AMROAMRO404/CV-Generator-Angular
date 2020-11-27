@@ -1,0 +1,85 @@
+.cv-parts {
+    text-transform: uppercase;
+}
+
+li {
+    font-size: larger;
+}
+
+.line-v {
+    border-left: 3px dotted silver;
+    height: auto;
+}
+
+#education-list {
+    list-style-type: none;
+}
+
+#edu {
+    text-transform: uppercase;
+}
+
+#edu2 {
+    text-transform: uppercase;
+}
+
+#education {
+    padding-top: 10px;
+    margin-left: 3px;
+}
+
+#degree1 {
+    font-weight: 650;
+    color: royalblue;
+}
+
+#degree2 {
+    font-weight: 650;
+    color: royalblue;
+}
+
+#school1 {
+    font-weight: 500;
+}
+
+#school2 {
+    font-weight: 500;
+}
+
+#edu-descrip1 {
+    opacity: .7;
+    padding-bottom: 10px;
+    text-transform: capitalize;
+    font-size: large;
+}
+
+#edu-descrip2 {
+    opacity: .7;
+    padding-bottom: 10px;
+    text-transform: capitalize;
+    font-size: large;
+}
+
+#month-year1 {
+    font-size: medium;
+}
+
+#month-year2 {
+    font-size: medium;
+}
+
+#degree1 {
+    font-size: large;
+}
+
+#school1 {
+    font-size: large;
+}
+
+#degree2 {
+    font-size: large;
+}
+
+#school2 {
+    font-size: large;
+}
