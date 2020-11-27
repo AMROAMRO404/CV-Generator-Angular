@@ -9,6 +9,14 @@ import { FirstPartComponent } from './landing-page/first-part/first-part.compone
 import { SecondPartComponent } from './landing-page/second-part/second-part.component';
 import { FormComponent } from './form/form.component';
 import { ResumeComponent } from './resume/resume.component';
+import { CvHeaderComponent } from './resume/cv-header/cv-header.component';
+import { ObjectiveComponent } from './resume/objective/objective.component';
+import { ExperienceComponent } from './resume/experience/experience.component';
+import { EducationComponent } from './resume/education/education.component';
+import { SkillsComponent } from './resume/skills/skills.component';
+import { LanguagesComponent } from './resume/languages/languages.component';
+import { CertificationCoursesComponent } from './resume/certification-courses/certification-courses.component';
+import { ReferencesComponent } from './resume/references/references.component';
 
 
 @NgModule({
@@ -20,6 +28,14 @@ import { ResumeComponent } from './resume/resume.component';
     SecondPartComponent,
     FormComponent,
     ResumeComponent,
+    CvHeaderComponent,
+    ObjectiveComponent,
+    ExperienceComponent,
+    EducationComponent,
+    SkillsComponent,
+    LanguagesComponent,
+    CertificationCoursesComponent,
+    ReferencesComponent,
 
   ],
   imports: [
