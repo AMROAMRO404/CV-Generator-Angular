@@ -5,8 +5,6 @@
     background-color: white;
     padding-bottom: 0;
     position: relative;
-    background-image: url("/assets/bg-2.svg");
-    background-size: 100% 100%;
 }
 
 .advantages {
@@ -14,10 +12,13 @@
 }
 
 #jumbo2 {
+    background-size: 100% 100%;
+    background-image: url("/assets/bg-2.svg");
     padding-bottom: 0;
 }
 
 #advs {
+    align-items: baseline;
     margin-top: 80px;
 }
 
@@ -32,6 +33,6 @@
 }
 
 .about-us {
-    padding-top: 100px;
+    padding-top: 60px;
     padding-bottom: 0;
 }

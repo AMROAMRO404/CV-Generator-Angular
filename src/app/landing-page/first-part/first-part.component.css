@@ -1,15 +1,11 @@
 .jumbotron {
     background-color: white;
-    padding-top: 0;
-    padding-bottom: 0;
     margin-bottom: 0;
+    margin-top: 0;
     text-align: center;
+    padding: 0;
 }
 
 #hh {
     font-size: large;
-}
-
-* {
-    padding-top: 15px;
 }
