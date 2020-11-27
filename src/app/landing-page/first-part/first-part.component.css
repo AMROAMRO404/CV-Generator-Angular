@@ -1,0 +1,15 @@
+.jumbotron {
+    background-color: white;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+#hh {
+    font-size: large;
+}
+
+* {
+    padding-top: 15px;
+}
