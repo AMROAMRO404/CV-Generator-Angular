@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { ReferencesComponent } from './resume/references/references.component';
 import { NameComponent } from './resume/cv-header/name/name.component';
 import { AddressPhoneComponent } from './resume/cv-header/address-phone/address-phone.component';
 import { LinksComponent } from './resume/cv-header/links/links.component';
+import { ShowdataComponent } from './showdata/showdata.component';
+
 
 
 @NgModule({
@@ -42,11 +45,15 @@ import { LinksComponent } from './resume/cv-header/links/links.component';
     NameComponent,
     AddressPhoneComponent,
     LinksComponent,
+    ShowdataComponent,
+
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
