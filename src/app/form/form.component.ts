@@ -10,29 +10,100 @@ export class FormComponent {
   field(field: any) {
     return this.cvForm.get(field);
   }
+
+  deleteExperience(index) {
+    let control = this.cvForm.controls.experiences as FormArray;
+    control.removeAt(index);
+  }
+  deleteEducation(index) {
+    let control = this.cvForm.controls.educations as FormArray;
+    control.removeAt(index);
+  }
+  deleteSkill(index) {
+    let control = this.cvForm.controls.skills as FormArray;
+    control.removeAt(index);
+  }
+  deleteLanguage(index) {
+    let control = this.cvForm.controls.languges as FormArray;
+    control.removeAt(index);
+  }
+  deleteCertification(index) {
+    let control = this.cvForm.controls.certifications as FormArray;
+    control.removeAt(index);
+  }
+  // addSkills() {
+  //   let ss = this.cvForm.controls.skills as FormArray;
+  //   ss.push(this.fb.group({
+  //     skillName: [''],
+  //   }));
+  // }
+  addExperience() {
+    let exps = this.cvForm.controls.experiences as FormArray;
+    exps.push(this.fb.group({
+      dateStart: [''],
+      dateEnd: [''],
+      jopTitle: [''],
+      companyName: [''],
+      description: ['']
+    }));
+  }
+  addEducation() {
+    let edus = this.cvForm.controls.educations as FormArray;
+    edus.push(this.fb.group({
+      monthYear: [''],
+      degree: [''],
+      school: [''],
+      description: ['']
+    }));
+  }
+  addSkills() {
+    let control = this.cvForm.controls.skills as FormArray;
+    control.push(
+      this.fb.group({
+        skillName: [''],
+      })
+    )
+  }
+  addLanguges() {
+    let control = this.cvForm.controls.languges as FormArray;
+    control.push(
+      this.fb.group({
+        languageName: [''],
+      })
+    )
+  }
+  addCandC() {
+    let control = this.cvForm.controls.certifications as FormArray;
+    control.push(
+      this.fb.group({
+        certificationName: [''],
+      })
+    )
+  }
+  addReferences() {
+    let control = this.cvForm.controls.refernces as FormArray;
+    control.push(
+      this.fb.group({
+        referncesName: [''],
+      })
+    )
+  }
   constructor(private fb: FormBuilder) { }
   cvForm = this.fb.group({
     fName: ['', [Validators.required, Validators.minLength(3)]],
-    lName: ['Amro'],
-    phone: ['0562001656'],
-    address: ['Hebron-Dura'],
-    email: ['amro.amro1999@gmail.com'],
-    linkedIn: ['amro@linkedIn.com'],
-    socialMedia: ['amro797@yahoo.com'],
-    objective: ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.'],
-    experience: this.fb.group({
-      dateStart: ['1/2/1999'],
-      dateEnd: ['1/2/2000'],
-      jopTitle: ['programmer'],
-      companyName: ['Google'],
-      description: ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.']
-    }),
-    education: this.fb.group({
-      monthYear: ['Feb/2010'],
-      degree: ['phd'],
-      school: ['MIT'],
-      description: ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.']
-    }),
+    lName: ['', [Validators.required, Validators.minLength(3)]],
+    phone: ['', [Validators.required, Validators.minLength(6)]],
+    address: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.minLength(3)]],
+    linkedIn: [''],
+    socialMedia: [''],
+    objective: ['', [Validators.required, Validators.minLength(3)]],
+    experiences: this.fb.array([]),
+    educations: this.fb.array([]),
+    skills: this.fb.array([]),
+    languges: this.fb.array([]),
+    refernces: this.fb.array([]),
+    certifications: this.fb.array([]),
   })
   loadApiData() {
     this.cvForm.patchValue({
@@ -44,14 +115,14 @@ export class FormComponent {
       linkedIn: 'amro@linkedIn.com',
       socialMedia: 'amro797@yahoo.com',
       objective: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-      experience: {
+      experiences: {
         dateStart: '1/2/1999',
         dateEnd: '1/2/2000',
         jopTitle: 'programmer',
         companyName: 'Google',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
       },
-      education: {
+      educations: {
         monthYear: 'Feb/2010',
         degree: 'phd',
         school: 'MIT',
@@ -59,6 +130,20 @@ export class FormComponent {
       },
     })
   }
+
+  // this.fb.group({
+  //   monthYear: ['Feb/2010'],
+  //   degree: ['phd'],
+  //   school: ['MIT'],
+  //   description: ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.']
+  // }),
+  // this.fb.group({
+  //   dateStart: ['1/2/1999'],
+  //   dateEnd: ['1/2/2000'],
+  //   jopTitle: ['programmer'],
+  //   companyName: ['Google'],
+  //   description: ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.']
+  // }),
   // cvForm = new FormGroup({
   //   fName: new FormControl(''),
   //   lName: new FormControl(''),

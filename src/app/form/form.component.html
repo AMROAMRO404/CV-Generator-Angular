@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <label>Last Name</label>
-                            <input formControlName="lName" type="text" class="form-control" id="input-last-name" name="last-name" placeholder="Ex: Trump">
+                            <input [class.is-invalid]="field('lName').invalid && field('lName').touched" formControlName="lName" type="text" class="form-control" id="input-last-name" name="last-name" placeholder="Ex: Trump">
                             <div *ngIf="field('lName').invalid && field('lName').touched">
                                 <small *ngIf="field('lName').errors?.required" class="text-danger">Last name is required</small>
                                 <small *ngIf="field('lName').errors?.minlength" class="text-danger">Last name must be at least 3 characters</small>
@@ -35,21 +35,21 @@
                         </div>
                         <div>
                             <label>Address</label>
-                            <input formControlName="address" type="text" class="form-control" id="input-address" name="address" placeholder="Ex: USA">
+                            <input [class.is-invalid]="field('address').invalid && field('address').touched" formControlName="address" type="text" class="form-control" id="input-address" name="address" placeholder="Ex: USA">
                             <div *ngIf="field('address').invalid && field('address').touched">
                                 <small *ngIf="field('address').errors?.required" class="text-danger">Adress is required</small>
                             </div>
                         </div>
                         <div>
                             <label>Phone</label>
-                            <input formControlName="phone" type="text" class="form-control" id="input-phone" name="phone" placeholder="Ex: 0097259924213">
+                            <input [class.is-invalid]="field('phone').invalid && field('phone').touched" formControlName="phone" type="text" class="form-control" id="input-phone" name="phone" placeholder="Ex: 0097259924213">
                             <div *ngIf="field('phone').invalid && field('phone').touched">
                                 <small *ngIf="field('phone').errors?.required" class="text-danger">Phone is required</small>
                             </div>
                         </div>
                         <div>
                             <label>Email address</label>
-                            <input formControlName="email" type="email" class="form-control" id="input-email1" name="email" placeholder="Ex: Trump@gmail.com">
+                            <input [class.is-invalid]="field('email').invalid && field('email').touched" formControlName="email" type="email" class="form-control" id="input-email1" name="email" placeholder="Ex: Trump@gmail.com">
                             <div *ngIf="field('email').invalid && field('email').touched">
                                 <small *ngIf="field('email').errors?.required" class="text-danger">Email is required</small>
                             </div>
@@ -98,36 +98,35 @@
             <div id="collapse-three" class="collapse" aria-labelledby="heading-three" data-parent="#cv-parts">
                 <div class="card-body">
                     <span class="titles">experience </span>
-                    <ul id="experience-list">
-                        <li>
-                            <div formGroupName="experience" id="your-experience">
-                                <span class="sub-title">Your Experience</span>
-                                <div>
-                                    <label>Date Start</label>
-                                    <input formControlName="dateStart" name="date-start" type="date" class="form-control" id="input-date-start1" placeholder="Ex: 2000/2/22">
-                                </div>
-                                <div>
-                                    <label>Date End</label>
-                                    <input formControlName="dateEnd" name="date-end" type="date" class="form-control" id="input-date-end1" placeholder="Ex: 2020/2/22">
-                                </div>
-                                <div>
-                                    <label>Jop Title</label>
-                                    <input formControlName="jopTitle" name="jop-title" type="text" class="form-control" id="input-jop-title1" placeholder="Ex: Programmer">
-                                </div>
-                                <div>
-                                    <label>Company</label>
-                                    <input formControlName="companyName" name="company" type="text" class="form-control" id="input-company1" placeholder="Ex: Google">
-                                </div>
-                                <div>
-                                    <label>Write short description</label>
-                                    <textarea formControlName="description" name="description-experience" class="form-control" id="description-experience1" placeholder="Describe your responsibilities and achievements in terms of impact and results. Use examples, but keep it short." rows="3"></textarea>
-                                </div>
+
+                    <div formArrayName="experiences" id="your-experience" *ngFor="let exps of  cvForm.get('experiences').controls; let i = index">
+                        <ng-container [formGroupName]="i">
+                            <span class="sub-title">Your Experience</span>
+                            <div>
+                                <label>Date Start</label>
+                                <input formControlName="dateStart" name="date-start" type="date" class="form-control" id="input-date-start1" placeholder="Ex: 2000/2/22">
                             </div>
-                        </li>
-                    </ul>
+                            <div>
+                                <label>Date End</label>
+                                <input formControlName="dateEnd" name="date-end" type="date" class="form-control" id="input-date-end1" placeholder="Ex: 2020/2/22">
+                            </div>
+                            <div>
+                                <label>Jop Title</label>
+                                <input formControlName="jopTitle" name="jop-title" type="text" class="form-control" id="input-jop-title1" placeholder="Ex: Programmer">
+                            </div>
+                            <div>
+                                <label>Company</label>
+                                <input formControlName="companyName" name="company" type="text" class="form-control" id="input-company1" placeholder="Ex: Google">
+                            </div>
+                            <div>
+                                <label>Write short description</label>
+                                <textarea formControlName="description" name="description-experience" class="form-control" id="description-experience1" placeholder="Describe your responsibilities and achievements in terms of impact and results. Use examples, but keep it short." rows="3"></textarea>
+                            </div>
+                            <button (click)="deleteExperience(i)" id="remove-experience" class="btn btn-danger " type="button">Remove Experience</button>
+                        </ng-container>
+                    </div>
                     <div class="buttons-add-remove">
-                        <button id="add-experience" class="btn btn-success " type="button">Add New Experience</button>
-                        <button id="remove-experience" class="btn btn-danger " type="button">Remove Experience</button>
+                        <button (click)="addExperience()" id="add-experience" class="btn btn-success m-lg-1" type="button">Add New Experience</button>
                     </div>
                 </div>
             </div>
@@ -143,34 +142,31 @@
             <div id="collapse-four" class="collapse" aria-labelledby="heading-four" data-parent="#cv-parts">
                 <div class="card-body">
                     <span class="titles">education </span>
-                    <ul id="education-list">
-                        <li>
-                            <div formGroupName="education" id="your-education">
-                                <span class="sub-title">Your Education</span>
-                                <div>
-                                    <label>Year-Month</label>
-                                    <input formControlName="monthYear" name="month-year" type="month" class="form-control" id="input-month-year1" placeholder="Ex: jun 2000">
-                                </div>
-                                <div>
-                                    <label>Degree</label>
-                                    <input formControlName="degree" name="degree" type="text" class="form-control" id="input-degree1" placeholder="Ex: PHD">
-                                </div>
-                                <div><label>School</label>
-                                    <input formControlName="school" name="school" type="text" class="form-control" id="input-school1" placeholder="Ex: MIT">
-                                </div>
-                                <div>
-                                    <label>Write short description</label>
-                                    <textarea formControlName="description" name="description-education" class="form-control" id="description-education1" placeholder="It’s okay to brag about your GPA, awards, and honors. Feel free to summarize your coursework too." rows="3"></textarea>
-                                </div>
+
+                    <div formArrayName="educations" *ngFor="let edus of  cvForm.get('educations').controls; let i = index" id="your-education">
+                        <ng-container [formGroupName]="i">
+                            <span class="sub-title">Your Education</span>
+                            <div>
+                                <label>Year-Month</label>
+                                <input formControlName="monthYear" name="month-year" type="month" class="form-control" id="input-month-year1" placeholder="Ex: jun 2000">
                             </div>
-                        </li>
-
-                    </ul>
-                    <div class="buttons-add-remove">
-                        <button id="add-education" class="btn btn-success " type="button">Add New Education</button>
-                        <button id="remove-education" class="btn btn-danger " type="button">Remove Education</button>
+                            <div>
+                                <label>Degree</label>
+                                <input formControlName="degree" name="degree" type="text" class="form-control" id="input-degree1" placeholder="Ex: PHD">
+                            </div>
+                            <div><label>School</label>
+                                <input formControlName="school" name="school" type="text" class="form-control" id="input-school1" placeholder="Ex: MIT">
+                            </div>
+                            <div>
+                                <label>Write short description</label>
+                                <textarea formControlName="description" name="description-education" class="form-control" id="description-education1" placeholder="It’s okay to brag about your GPA, awards, and honors. Feel free to summarize your coursework too." rows="3"></textarea>
+                            </div>
+                            <button (click)="deleteEducation(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Education</button>
+                        </ng-container>
                     </div>
-
+                    <div class="buttons-add-remove">
+                        <button (click)="addEducation()" id="add-education" class="btn btn-success " type="button">Add New Education</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -185,14 +181,17 @@
             <div id="collapse-five" class="collapse" aria-labelledby="heading-five" data-parent="#cv-parts">
                 <div class="card-body">
                     <span class="titles">skills </span>
-                    <ul id="skills-list">
-                        <li>
+
+                    <div formArrayName="skills" *ngFor="let skills of cvForm.get('skills').controls; let i = index">
+                        <ng-container [formGroupName]="i">
                             <label>Skill</label>
-                            <input name="skills" type="text" class="form-control" placeholder="List one of your strengths">
-                        </li>
-                    </ul>
-                    <button id="add-skill" class="btn btn-success " type="button">Add New skill</button>
-                    <button id="remove-skill" class="btn btn-danger " type="button">Remove skill</button>
+                            <input formControlName="skillName" name="skills" type="text" class="form-control" placeholder="List one of your strengths">
+                            <button (click)="deleteSkill(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Skill</button>
+                        </ng-container>
+                    </div>
+                    <div class="buttons-add-remove">
+                        <button (click)="addSkills()" id="add-education" class="btn btn-success " type="button">Add New Skill</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -207,14 +206,16 @@
             <div id="collapse-six" class="collapse" aria-labelledby="heading-six" data-parent="#cv-parts">
                 <div class="card-body">
                     <span class="titles">languages </span>
-                    <ul id="languages-list">
-                        <li>
+                    <div formArrayName="languges" *ngFor="let languges of cvForm.get('languges').controls; let i = index">
+                        <ng-container [formGroupName]="i">
                             <label>Language</label>
-                            <input name="Languages" type="text" class="form-control" placeholder="List one of your languages">
-                        </li>
-                    </ul>
-                    <button id="add-language" class="btn btn-success " type="button">Add New language</button>
-                    <button id="remove-language" class="btn btn-danger " type="button">Remove language</button>
+                            <input formControlName="languageName" name="Languages" type="text" class="form-control" placeholder="List one of your languages">
+                            <button (click)="deleteLanguage(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove language</button>
+                        </ng-container>
+                    </div>
+                    <div class="buttons-add-remove">
+                        <button (click)="addLanguges()" id="add-education" class="btn btn-success " type="button">Add New language</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -229,38 +230,16 @@
             <div id="collapse-seven" class="collapse" aria-labelledby="heading-seven" data-parent="#cv-parts">
                 <div class="card-body">
                     <span class="titles">certification & courses </span>
-                    <ul id="c-and-c-list">
-
-                        <li>
+                    <div formArrayName="certifications" *ngFor="let languges of cvForm.get('certifications').controls; let i = index">
+                        <ng-container [formGroupName]="i">
                             <label>certification & courses</label>
-                            <input name="c-and-c" type="text" class="form-control" placeholder="List one of your courses or certification">
-                        </li>
-                    </ul>
-                    <button id="add-c-and-c" class="btn btn-success " type="button">Add New certification & courses</button>
-                    <button id="remove-c-and-c" class="btn btn-danger " type="button">Remove certification & courses</button>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="heading-eight">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed text-button" type="button" data-toggle="collapse" data-target="#collapse-eight" aria-expanded="false" aria-controls="collapse-eight">
-            References
-          </button>
-                </h2>
-            </div>
-            <div id="collapse-eight" class="collapse" aria-labelledby="heading-eight" data-parent="#cv-parts">
-                <div class="card-body">
-                    <span class="titles">References </span>
-                    <ul id="references-list">
-
-                        <li>
-                            <label>Reference</label>
-                            <input name="ref" type="text" class="form-control" placeholder="Reference">
-                        </li>
-                    </ul>
-                    <button id="add-reference" class="btn btn-success " type="button">Add New Reference</button>
-                    <button id="remove-reference" class="btn btn-danger " type="button">Remove Reference</button>
+                            <input formControlName="certificationName" name="c-and-c" type="text" class="form-control" placeholder="List one of your courses or certification">
+                            <button (click)=" deleteCertification(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove certification & courses</button>
+                        </ng-container>
+                    </div>
+                    <div class="buttons-add-remove">
+                        <button (click)="addCandC()" id="add-education" class="btn btn-success " type="button">Add New certification & courses</button>
+                    </div>
                 </div>
             </div>
         </div>

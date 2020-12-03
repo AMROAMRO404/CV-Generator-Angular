@@ -17,7 +17,6 @@ import { EducationComponent } from './resume/education/education.component';
 import { SkillsComponent } from './resume/skills/skills.component';
 import { LanguagesComponent } from './resume/languages/languages.component';
 import { CertificationCoursesComponent } from './resume/certification-courses/certification-courses.component';
-import { ReferencesComponent } from './resume/references/references.component';
 import { NameComponent } from './resume/cv-header/name/name.component';
 import { AddressPhoneComponent } from './resume/cv-header/address-phone/address-phone.component';
 import { LinksComponent } from './resume/cv-header/links/links.component';
@@ -41,7 +40,6 @@ import { ShowdataComponent } from './showdata/showdata.component';
     SkillsComponent,
     LanguagesComponent,
     CertificationCoursesComponent,
-    ReferencesComponent,
     NameComponent,
     AddressPhoneComponent,
     LinksComponent,
