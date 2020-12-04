@@ -32,32 +32,32 @@ export class FormComponent {
   addExperience() {
     let exps = this.cvForm.controls.experiences as FormArray;
     exps.push(this.fb.group({
-      dateStart: [''],
-      dateEnd: [''],
-      jopTitle: [''],
-      companyName: [''],
-      description: ['']
+      dateStart: ['', [Validators.required]],
+      dateEnd: ['', [Validators.required]],
+      jopTitle: ['', [Validators.required]],
+      companyName: ['', [Validators.required]],
+      description: ['', [Validators.required]]
     }));
   }
   addEducation() {
     let edus = this.cvForm.controls.educations as FormArray;
     edus.push(this.fb.group({
-      monthYear: [''],
-      degree: [''],
-      school: [''],
-      description: ['']
+      monthYear: ['', [Validators.required]],
+      degree: ['', [Validators.required]],
+      school: ['', [Validators.required]],
+      description: ['', [Validators.required]]
     }));
   }
   addSkills() {
-    this.skills.push(new FormControl(''));
+    this.skills.push(new FormControl('', [Validators.required]));
     console.log(this.skills.value);
   }
   addLanguges() {
-    this.languges.push(new FormControl(''));
+    this.languges.push(new FormControl('', [Validators.required]));
     console.log(this.languges.value);
   }
   addCandC() {
-    this.certifications.push(new FormControl(''));
+    this.certifications.push(new FormControl('', [Validators.required]));
     console.log(this.cvForm.get('certifications').value);
   }
 
