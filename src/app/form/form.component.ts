@@ -50,12 +50,15 @@ export class FormComponent {
   }
   addSkills() {
     this.skills.push(new FormControl(''));
+    console.log(this.skills.value);
   }
   addLanguges() {
     this.languges.push(new FormControl(''));
+    console.log(this.languges.value);
   }
   addCandC() {
-    this.certifications.push(new FormControl(''))
+    this.certifications.push(new FormControl(''));
+    console.log(this.cvForm.get('certifications').value);
   }
 
   fName = new FormControl('', [Validators.required, Validators.minLength(3)]);

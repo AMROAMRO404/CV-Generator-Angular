@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,7 +52,13 @@ import { ShowdataComponent } from './showdata/showdata.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: 'landing-page', component: LandingPageComponent },
+      { path: 'form', component: FormComponent },
+      { path: 'resume', component: ResumeComponent },
+
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
