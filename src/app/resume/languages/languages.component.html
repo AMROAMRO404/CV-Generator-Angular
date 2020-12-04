@@ -2,8 +2,7 @@
     languages</h2>
 <div class="row important-part">
     <ul id="languages-list" class="col-12">
-        <li>List one of your languages</li>
-        <li>List one of your languages</li>
+        <li *ngFor="let l of cv.languges">{{l}}</li>
     </ul>
 </div>
 <hr>

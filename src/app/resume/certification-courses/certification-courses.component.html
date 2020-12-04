@@ -1,10 +1,7 @@
 <h2 class="cv-parts">certification & courses</h2>
 <div class="row important-part">
     <ul id="certification-and-courses-list" class="col-12">
-        <li>List one of your courses or certification</li>
-        <li>List one of your courses or certification</li>
-        <li>List one of your courses or certification</li>
-        <li>List one of your courses or certification</li>
+        <li *ngFor="let c of cv.certifications">{{c}}</li>
     </ul>
 </div>
 <hr>

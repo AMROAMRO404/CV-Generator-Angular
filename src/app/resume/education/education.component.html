@@ -4,38 +4,19 @@
     <div class="line-v"></div>
     <div class="col-11" id="edu-part">
         <ul id="education-list">
-            <li>
+            <li *ngFor="let eduo of cv.education">
                 <div id="edu">
                     <div>
-                        <span id="month-year1">month year</span>
-
+                        <span id="month-year1">{{eduo.monthYear}}</span>
                     </div>
                     <div>
-                        <span id="degree1">degree</span>
+                        <span id="degree1">{{eduo.degree}}</span>
                         <span id="panctuation-mark">,</span>
-                        <span id="school1">school</span>
+                        <span id="school1">{{eduo.school}}</span>
                     </div>
                     <div>
                         <p id="edu-descrip1">
-                            It’s okay to brag about your GPA, awards, and honors. Feel free to summarize your coursework too.
-                        </p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div id="edu2">
-                    <div id="month-year2">
-                        <span i>month</span>
-                        <span> year</span>
-                    </div>
-                    <div>
-                        <span id="degree2">degree</span>
-                        <span id="panctuation-mark">,</span>
-                        <span id="school2">school</span>
-                    </div>
-                    <div id="edu-descrip2">
-                        <p>
-                            It’s okay to brag about your GPA, awards, and honors. Feel free to summarize your coursework too.
+                            {{eduo.description}}
                         </p>
                     </div>
                 </div>

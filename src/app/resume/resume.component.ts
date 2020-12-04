@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { PassingCVService } from '../passing-cv.service';
+import { CV } from '../cv';
 @Component({
   selector: 'app-resume',
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css']
 })
-export class ResumeComponent {
+export class ResumeComponent implements OnInit {
 
   generatePDF() {
     var data = document.getElementById('htmlData');
     html2canvas(data).then(canvas => {
-
       // Few necessary setting options  
       var imgWidth = 208;
       var pageHeight = 295;
@@ -24,9 +25,14 @@ export class ResumeComponent {
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
       pdf.html(document.body)
       pdf.save('CV.pdf');
-
     });
-
+  }
+  constructor(private cvServiece: PassingCVService) {
+  }
+  cv: CV;
+  ngOnInit(): void {
+    this.cv = this.cvServiece.getCV();
+    console.log(this.cv);
   }
 }
 

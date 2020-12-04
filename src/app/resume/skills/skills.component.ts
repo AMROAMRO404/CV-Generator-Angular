@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CV } from 'src/app/cv';
+import { PassingCVService } from 'src/app/passing-cv.service';
 
 @Component({
   selector: 'app-skills',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SkillsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private cvServiece: PassingCVService) {
+  }
+  cv: CV;
   ngOnInit(): void {
+    this.cv = this.cvServiece.getCV();
+    console.log(this.cv.certifications);
   }
 
 }

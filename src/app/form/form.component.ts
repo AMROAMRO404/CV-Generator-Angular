@@ -1,17 +1,52 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormBuilder, FormGroup, Validators, FormArrayName } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormArray, FormControl, FormBuilder, FormGroup, Validators, FormArrayName, Form } from '@angular/forms';
+import { CV } from '../cv';
+import { PassingCVService } from '../passing-cv.service';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
+
+  //define the controlers
+  fName = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  lName = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  phone = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  address = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  email = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  linkedIn = new FormControl('');
+  socialMedia = new FormControl('');
+  objective = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  experiences = new FormArray([]);
+  educations = new FormArray([]);
+  skills = new FormArray([]);
+  languges = new FormArray([]);
+  certifications = new FormArray([]);
+
   cvForm: FormGroup;
+  constructor(private fb: FormBuilder, private cvServiece: PassingCVService) {
+    this.cvForm = this.fb.group({
+      fName: this.fName,
+      lName: this.lName,
+      phone: this.phone,
+      address: this.address,
+      email: this.email,
+      linkedIn: this.linkedIn,
+      socialMedia: this.socialMedia,
+      objective: this.objective,
+      experiences: this.experiences,
+      educations: this.educations,
+      skills: this.skills,
+      languges: this.languges,
+      certifications: this.certifications,
+    })
+  }
   field(field: any) {
     return this.cvForm.get(field);
   }
-
+  //delete methodes
   deleteExperience(index) {
     let control = this.cvForm.controls.experiences as FormArray;
     control.removeAt(index);
@@ -29,6 +64,8 @@ export class FormComponent {
   deleteCertification(index) {
     this.certifications.removeAt(index)
   }
+
+  //add methodes
   addExperience() {
     let exps = this.cvForm.controls.experiences as FormArray;
     exps.push(this.fb.group({
@@ -50,47 +87,16 @@ export class FormComponent {
   }
   addSkills() {
     this.skills.push(new FormControl('', [Validators.required]));
-    console.log(this.skills.value);
   }
   addLanguges() {
     this.languges.push(new FormControl('', [Validators.required]));
-    console.log(this.languges.value);
   }
   addCandC() {
     this.certifications.push(new FormControl('', [Validators.required]));
     console.log(this.cvForm.get('certifications').value);
   }
 
-  fName = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  lName = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  phone = new FormControl('', [Validators.required, Validators.minLength(6)]);
-  address = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  email = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  linkedIn = new FormControl('');
-  socialMedia = new FormControl('');
-  objective = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  experiences = new FormArray([]);
-  educations = new FormArray([]);
-  skills = new FormArray([]);
-  languges = new FormArray([]);
-  certifications = new FormArray([]);
-  constructor(private fb: FormBuilder) {
-    this.cvForm = this.fb.group({
-      fName: this.fName,
-      lName: this.lName,
-      phone: this.phone,
-      address: this.address,
-      email: this.email,
-      linkedIn: this.linkedIn,
-      socialMedia: this.socialMedia,
-      objective: this.objective,
-      experiences: this.experiences,
-      educations: this.educations,
-      skills: this.skills,
-      languges: this.languges,
-      certifications: this.certifications,
-    })
-  }
+
 
 
   cvData: any;
@@ -98,7 +104,28 @@ export class FormComponent {
     this.cvData = JSON.stringify(this.cvForm.value);
     console.log(this.cvData);
   }
+  cv: CV;
+  submit() {
+    this.cv = new CV(
+      this.cvForm.value.fName,
+      this.cvForm.value.lName,
+      this.cvForm.value.phone,
+      this.cvForm.value.address,
+      this.cvForm.value.email,
+      this.cvForm.value.linkedIn,
+      this.cvForm.value.socialMedia,
+      this.cvForm.value.objective,
+      this.cvForm.value.experiences,
+      this.cvForm.value.educations,
+      this.cvForm.value.skills,
+      this.cvForm.value.languges,
+      this.cvForm.value.certifications
+    );
+    this.cvServiece.addCV(this.cv);
+  }
 
+
+  //console.log(this.cvForm.value.fName);
   // loadApiData() {
   //   this.cvForm.patchValue({
   //     fName: 'Amro',

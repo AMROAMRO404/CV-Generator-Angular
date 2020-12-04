@@ -2,12 +2,7 @@
 <div class="row important-part">
 
     <ul id="skills" class="col-6">
-        <li>List your strengths relevant for the role you’re applying for</li>
-        <li>List one of your strengths</li>
-        <li>List one of your strengths</li>
-        <li>List one of your strengths</li>
-        <li>List one of your strengths</li>
-        <li>List one of your strengths</li>
+        <li *ngFor="let s of cv.skills">{{s}}</li>
     </ul>
 
 </div>

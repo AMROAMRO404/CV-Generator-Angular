@@ -19,10 +19,6 @@ li {
     text-transform: uppercase;
 }
 
-#edu2 {
-    text-transform: uppercase;
-}
-
 #education {
     padding-top: 10px;
     margin-left: 3px;
@@ -33,16 +29,7 @@ li {
     color: royalblue;
 }
 
-#degree2 {
-    font-weight: 650;
-    color: royalblue;
-}
-
 #school1 {
-    font-weight: 500;
-}
-
-#school2 {
     font-weight: 500;
 }
 
@@ -53,18 +40,7 @@ li {
     font-size: large;
 }
 
-#edu-descrip2 {
-    opacity: .7;
-    padding-bottom: 10px;
-    text-transform: capitalize;
-    font-size: large;
-}
-
 #month-year1 {
-    font-size: medium;
-}
-
-#month-year2 {
     font-size: medium;
 }
 
@@ -73,13 +49,5 @@ li {
 }
 
 #school1 {
-    font-size: large;
-}
-
-#degree2 {
-    font-size: large;
-}
-
-#school2 {
     font-size: large;
 }

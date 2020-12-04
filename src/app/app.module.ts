@@ -21,7 +21,7 @@ import { CertificationCoursesComponent } from './resume/certification-courses/ce
 import { NameComponent } from './resume/cv-header/name/name.component';
 import { AddressPhoneComponent } from './resume/cv-header/address-phone/address-phone.component';
 import { LinksComponent } from './resume/cv-header/links/links.component';
-import { ShowdataComponent } from './showdata/showdata.component';
+
 
 
 
@@ -44,9 +44,6 @@ import { ShowdataComponent } from './showdata/showdata.component';
     NameComponent,
     AddressPhoneComponent,
     LinksComponent,
-    ShowdataComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -57,7 +54,6 @@ import { ShowdataComponent } from './showdata/showdata.component';
       { path: 'landing-page', component: LandingPageComponent },
       { path: 'form', component: FormComponent },
       { path: 'resume', component: ResumeComponent },
-
     ])
   ],
   providers: [],

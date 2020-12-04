@@ -1,43 +1,23 @@
 <h2 class="cv-parts">experience</h2>
 <div id="experience" class="row">
-
     <div class="col-1-sm line-v"></div>
     <div class="col-11" id="exp-part">
         <ul id="experience-list">
-            <li>
+            <li *ngFor="let exp of cv.experience">
                 <div id="exper">
                     <div>
-                        <span id="date-start">from</span>
+                        <span id="date-start">{{exp.dateStart}}</span>
                         <span id="panctuation-mark">, </span>
-                        <span id="date-end">to</span>
+                        <span id="date-end">{{exp.dateEnd}}</span>
                     </div>
                     <div>
-                        <span id="jop-title">job title</span>
+                        <span id="jop-title">{{exp.jopTitle}}</span>
                         <span id="panctuation-mark">,</span>
-                        <span id="company">company</span>
+                        <span id="company">{{exp.companyName}}</span>
                     </div>
                     <div>
                         <p id="jop-description">
-                            Describe your responsibilities and achievements in terms of impact and results. Use examples, but keep it short.
-                        </p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div id="exper2">
-                    <div>
-                        <span id="date-start2">from</span>
-                        <span id="panctuation-mark">-</span>
-                        <span id="date-end2">to</span>
-                    </div>
-                    <div>
-                        <span id="jop-title2">jop title</span>
-                        <span id="panctuation-mark">,</span>
-                        <span id="company2">company</span>
-                    </div>
-                    <div id="jop-description2">
-                        <p>
-                            Describe your responsibilities and achievements in terms of impact and results. Use examples, but keep it short.
+                            {{exp.description}}
                         </p>
                     </div>
                 </div>

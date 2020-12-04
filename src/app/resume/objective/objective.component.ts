@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CV } from 'src/app/cv';
+import { PassingCVService } from 'src/app/passing-cv.service';
 
 @Component({
   selector: 'app-objective',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ObjectiveComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private cvServiece: PassingCVService) {
   }
+  cv: CV;
+  ngOnInit(): void {
+    this.cv = this.cvServiece.getCV();
+
+  }
+
 
 }
