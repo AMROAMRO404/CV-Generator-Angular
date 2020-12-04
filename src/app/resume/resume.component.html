@@ -1,7 +1,11 @@
-<app-cv-header></app-cv-header>
-<app-objective></app-objective>
-<app-education></app-education>
-<app-experience></app-experience>
-<app-skills></app-skills>
-<app-languages></app-languages>
-<app-certification-courses></app-certification-courses>
+<div style=" margin-left:50px;margin-right: 50px;margin-top: 100px;" id="htmlData">
+    <app-cv-header></app-cv-header>
+    <app-objective></app-objective>
+    <app-education></app-education>
+    <app-experience></app-experience>
+    <app-skills></app-skills>
+    <app-languages></app-languages>
+    <app-certification-courses></app-certification-courses>
+</div>
+
+<input type="button" value="Download PDF" class="btn btn-success" (click)="generatePDF()">
