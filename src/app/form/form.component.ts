@@ -97,10 +97,19 @@ export class FormComponent {
     this.certifications.push(new FormControl('', [Validators.required]));
   }
   //when submit the data
+
   cvData: any;
   cv: CV;
+  cvId: any;
   submit() {
+    if (localStorage.ID) {
+      this.cvId = localStorage.getItem('ID');
+    } else {
+      this.cvId = this.cvServiece.generateID();
+      localStorage.setItem('ID', this.cvId);
+    }
     this.cv = new CV(
+      this.cvId,
       this.cvForm.value.fName,
       this.cvForm.value.lName,
       this.cvForm.value.phone,
@@ -116,7 +125,7 @@ export class FormComponent {
       this.cvForm.value.certifications
     );
     this.cvServiece.addCV(this.cv);
-    console.log(this.cvForm.value)
+    console.log(this.cvForm.value);
   }
   //console.log(this.cvForm.value.fName);
   // loadApiData() {

@@ -1,5 +1,6 @@
 export class CV {
     constructor(
+        public id: String,
         public firstName: String,
         public lastName: String,
         public phone: number,
