@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container our-form">
-    <h1 id="please">please enter your information that you would to show in your CV!</h1>
+    <h1 id="please">please enter your information that you need to show in your CV!</h1>
 </div>
 <form [formGroup]="cvForm" id="myform" class="container">
     <div class="accordion container" id="cv-parts">
@@ -308,5 +308,5 @@
         <button (click)="submit()" routerLink="/resume" [disabled]="!cvForm.valid" type="submit" id="sub" class="btn btn-primary">Submit & Get My CV </button>
         <button (click)="PreviewData()" class="btn btn-secondary ml-2" type="button">Load API Data</button>
     </div>
-    {{cvForm.value | json}}
+    <!-- {{cvForm.value | json}} -->
 </form>
