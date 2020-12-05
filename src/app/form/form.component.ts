@@ -116,22 +116,26 @@ export class FormComponent {
       this.cvForm.value.certifications
     );
     this.cvServiece.addCV(this.cv);
+    console.log(this.cvForm.value)
   }
   //console.log(this.cvForm.value.fName);
-  loadApiData() {
-    this.cvForm.patchValue({
-      fName: this.cvServiece.getCV().firstName,
-      lName: this.cvServiece.getCV().lastName,
-      phone: this.cvServiece.getCV().phone,
-      address: this.cvServiece.getCV().address,
-      email: this.cvServiece.getCV().email,
-      linkedIn: this.cvServiece.getCV().linkedIn,
-      socialMedia: this.cvServiece.getCV().socialMedia,
-      objective: this.cvServiece.getCV().objective,
-      experiences: this.cvServiece.getCV().experience,
-      educations: this.cvServiece.getCV().education
-    })
-  }
+  // loadApiData() {
+  //   this.cvForm.patchValue({
+  //     fName: this.cvServiece.getCV().firstName,
+  //     lName: this.cvServiece.getCV().lastName,
+  //     phone: this.cvServiece.getCV().phone,
+  //     address: this.cvServiece.getCV().address,
+  //     email: this.cvServiece.getCV().email,
+  //     linkedIn: this.cvServiece.getCV().linkedIn,
+  //     socialMedia: this.cvServiece.getCV().socialMedia,
+  //     objective: this.cvServiece.getCV().objective,
+  //     experiences: this.cvServiece.getCV().experience,
+  //     educations: this.cvServiece.getCV().education,
+  //     skills: this.cvServiece.getCV().skills,
+  //     languges: this.cvServiece.getCV().languges,
+  //     certifications: this.cvServiece.getCV().certifications
+  //   })
+  // }
 }
 
 

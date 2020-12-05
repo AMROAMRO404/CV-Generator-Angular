@@ -9,7 +9,13 @@ import { CV } from '../cv';
   styleUrls: ['./resume.component.css']
 })
 export class ResumeComponent implements OnInit {
-
+  constructor(private cvServiece: PassingCVService) {
+  }
+  cv: CV;
+  ngOnInit(): void {
+    this.cv = this.cvServiece.getCV();
+    console.log(this.cv);
+  }
   // generatePDF() {
   //   var data = document.getElementById('htmlData');
   //   html2canvas(data).then(canvas => {
@@ -27,12 +33,6 @@ export class ResumeComponent implements OnInit {
   //     pdf.save('CV.pdf');
   //   });
   // }
-  constructor(private cvServiece: PassingCVService) {
-  }
-  cv: CV;
-  ngOnInit(): void {
-    this.cv = this.cvServiece.getCV();
-    console.log(this.cv);
-  }
+
 }
 

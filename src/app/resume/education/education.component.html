@@ -1,23 +1,21 @@
-<h2 class="cv-parts">experience</h2>
-<div id="experience" class="row">
-    <div class="col-1-sm line-v"></div>
-    <div class="col-11" id="exp-part">
-        <ul id="experience-list">
-            <li *ngFor="let exp of cv.experience">
-                <div id="exper">
+<h2 class="cv-parts">education</h2>
+<div id="education" class="row">
+    <div class="line-v"></div>
+    <div class="col-11" id="edu-part">
+        <ul id="education-list">
+            <li *ngFor="let eduo of cv.education">
+                <div id="edu">
                     <div>
-                        <span id="date-start">{{exp.dateStart}}</span>
-                        <span id="panctuation-mark">, </span>
-                        <span id="date-end"> {{exp.dateEnd}}</span>
+                        <span id="month-year1">{{eduo.monthYear}}</span>
                     </div>
                     <div>
-                        <span id="jop-title">{{exp.jopTitle}}</span>
+                        <span id="degree1">{{eduo.degree}}</span>
                         <span id="panctuation-mark">,</span>
-                        <span id="company"> {{exp.companyName}}</span>
+                        <span id="school1"> {{eduo.school}}</span>
                     </div>
                     <div>
-                        <p id="jop-description">
-                            {{exp.description}}
+                        <p id="edu-descrip1">
+                            {{eduo.description}}
                         </p>
                     </div>
                 </div>

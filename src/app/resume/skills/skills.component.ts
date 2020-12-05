@@ -14,7 +14,6 @@ export class SkillsComponent implements OnInit {
   cv: CV;
   ngOnInit(): void {
     this.cv = this.cvServiece.getCV();
-    console.log(this.cv.certifications);
   }
 
 }
