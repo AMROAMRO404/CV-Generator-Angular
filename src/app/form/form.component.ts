@@ -25,6 +25,7 @@ export class FormComponent {
   languges = new FormArray([]);
   certifications = new FormArray([]);
 
+  //define the constructor and inject the service
   cvForm: FormGroup;
   constructor(private fb: FormBuilder, private cvServiece: PassingCVService) {
     this.cvForm = this.fb.group({
@@ -43,6 +44,7 @@ export class FormComponent {
       certifications: this.certifications,
     })
   }
+  //get the field
   field(field: any) {
     return this.cvForm.get(field);
   }
@@ -93,17 +95,9 @@ export class FormComponent {
   }
   addCandC() {
     this.certifications.push(new FormControl('', [Validators.required]));
-    console.log(this.cvForm.get('certifications').value);
   }
-
-
-
-
+  //when submit the data
   cvData: any;
-  PreviewData() {
-    this.cvData = JSON.stringify(this.cvForm.value);
-    console.log(this.cvData);
-  }
   cv: CV;
   submit() {
     this.cv = new CV(
@@ -123,34 +117,23 @@ export class FormComponent {
     );
     this.cvServiece.addCV(this.cv);
   }
-
-
   //console.log(this.cvForm.value.fName);
-  // loadApiData() {
-  //   this.cvForm.patchValue({
-  //     fName: 'Amro',
-  //     lName: 'Amro',
-  //     phone: '0562001656',
-  //     address: 'Hebron-Dura',
-  //     email: 'amro.amro1999@gmail.com',
-  //     linkedIn: 'amro@linkedIn.com',
-  //     socialMedia: 'amro797@yahoo.com',
-  //     objective: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  //     experiences: {
-  //       dateStart: '1/2/1999',
-  //       dateEnd: '1/2/2000',
-  //       jopTitle: 'programmer',
-  //       companyName: 'Google',
-  //       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-  //     },
-  //     educations: {
-  //       monthYear: 'Feb/2010',
-  //       degree: 'phd',
-  //       school: 'MIT',
-  //       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-  //     },
-  //   })
-  // }
+  loadApiData() {
+    this.cvForm.patchValue({
+      fName: this.cvServiece.getCV().firstName,
+      lName: this.cvServiece.getCV().lastName,
+      phone: this.cvServiece.getCV().phone,
+      address: this.cvServiece.getCV().address,
+      email: this.cvServiece.getCV().email,
+      linkedIn: this.cvServiece.getCV().linkedIn,
+      socialMedia: this.cvServiece.getCV().socialMedia,
+      objective: this.cvServiece.getCV().objective,
+      experiences: this.cvServiece.getCV().experience,
+      educations: this.cvServiece.getCV().education
+    })
+  }
+}
+
 
   // this.fb.group({
   //   monthYear: ['Feb/2010'],
@@ -193,4 +176,4 @@ export class FormComponent {
 
 
 
-}
+
