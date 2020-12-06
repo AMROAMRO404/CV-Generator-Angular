@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormControl, FormBuilder, FormGroup, Validators, FormArrayName, Form } from '@angular/forms';
+import { data } from 'jquery';
 import { CV } from '../cv';
 import { PassingCVService } from '../passing-cv.service';
 
@@ -27,7 +29,7 @@ export class FormComponent {
 
   //define the constructor and inject the service
   cvForm: FormGroup;
-  constructor(private fb: FormBuilder, private cvServiece: PassingCVService) {
+  constructor(private fb: FormBuilder, private cvServiece: PassingCVService, private http: HttpClient) {
     this.cvForm = this.fb.group({
       fName: this.fName,
       lName: this.lName,
@@ -125,7 +127,9 @@ export class FormComponent {
       this.cvForm.value.certifications
     );
     this.cvServiece.addCV(this.cv);
-    console.log(this.cvForm.value);
+    this.http.post(`http://localhost:3000/add/${this.cvId}`, this.cvForm.value).subscribe(e => {
+      console.log(e)
+    })
   }
   //console.log(this.cvForm.value.fName);
   // loadApiData() {

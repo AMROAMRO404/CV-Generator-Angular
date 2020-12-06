@@ -3,13 +3,17 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { PassingCVService } from '../passing-cv.service';
 import { CV } from '../cv';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-resume',
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css']
 })
 export class ResumeComponent implements OnInit {
-  constructor(private cvServiece: PassingCVService) {
+  constructor(private cvServiece: PassingCVService, private http: HttpClient) {
+    this.http.get(`http://localhost:3000`).subscribe(e => {
+      console.log(e)
+    })
   }
   cv: CV;
   ngOnInit(): void {

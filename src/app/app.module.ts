@@ -21,6 +21,7 @@ import { CertificationCoursesComponent } from './resume/certification-courses/ce
 import { NameComponent } from './resume/cv-header/name/name.component';
 import { AddressPhoneComponent } from './resume/cv-header/address-phone/address-phone.component';
 import { LinksComponent } from './resume/cv-header/links/links.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -49,6 +50,7 @@ import { LinksComponent } from './resume/cv-header/links/links.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'landing-page', component: LandingPageComponent },
