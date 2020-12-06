@@ -1,0 +1,38 @@
+.jumbotron {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: white;
+    padding-bottom: 0;
+    position: relative;
+}
+
+.advantages {
+    width: 19rem;
+}
+
+#jumbo2 {
+    background-size: 100% 100%;
+    background-image: url("/assets/bg-2.svg");
+    padding-bottom: 0;
+}
+
+#advs {
+    align-items: baseline;
+    margin-top: 80px;
+}
+
+.card {
+    text-align: center;
+    height: 170px;
+}
+
+.advantages-cards {
+    font-size: larger;
+    line-height: 50px;
+}
+
+.about-us {
+    padding-top: 60px;
+    padding-bottom: 0;
+}

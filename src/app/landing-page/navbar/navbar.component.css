@@ -1,0 +1,9 @@
+.navbar {
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+#navv {
+    background-color: #0099ff;
+}

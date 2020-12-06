@@ -1,0 +1,44 @@
+#please {
+    text-transform: capitalize;
+    margin-top: 30px;
+}
+
+#our-form {
+    margin-bottom: 100px;
+}
+
+.titles {
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+span::after {
+    content: '\A';
+    white-space: pre;
+}
+
+#cv-parts {
+    padding: 20px;
+}
+
+.text-button {
+    font-size: large;
+}
+
+.sub-title {
+    font-size: 18px;
+    font-weight: 550;
+    color: royalblue;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.buttons-add-remove {
+    margin-top: 15px;
+}
+
+button {
+    margin-right: 15px;
+}

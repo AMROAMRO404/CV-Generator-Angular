@@ -1,0 +1,9 @@
+#address-phone {
+    opacity: .7;
+    color: slategrey;
+}
+
+* {
+    letter-spacing: 0.5px;
+    text-align: center;
+}

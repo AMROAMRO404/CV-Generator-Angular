@@ -1,0 +1,11 @@
+#links {
+    margin-top: 20px;
+    color: royalblue;
+    font-size: large;
+    font-weight: 600;
+}
+
+* {
+    letter-spacing: 0.5px;
+    text-align: center;
+}
