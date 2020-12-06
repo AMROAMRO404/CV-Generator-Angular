@@ -22,6 +22,7 @@ const CVSchema = new Schema({
     linkedIn: {
         type: String
     },
+
     socialMedia: {
         type: String
     },
