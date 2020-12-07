@@ -6,8 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "tsc": "tsc",
-        "dev": "react-scripts start",
         "start": "serve -s build",
+        "heroku-prebuild": "npm install -f",
         "heroku-postbuild": "npm run build"
     },
     "author": "Amro Amro",
