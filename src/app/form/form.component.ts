@@ -160,13 +160,28 @@ export class FormComponent {
           this.router.navigate(['/resume']);
         }
         else {
-          alert("you dont have cv yet!")
+          alert("you dont have a cv yet!")
         }
-
       })
     }
     else {
-      alert("you dont have cv yet!")
+      alert("you dont have a cv yet!")
+    }
+  }
+
+  deleteMyCV() {
+    if (!(localStorage.getItem('ID'))) {
+      alert("You still dont have a CV to delete :) ")
+    } else {
+      if (confirm("Are you sure to delete your old CV ?")) {
+        this.http.delete(`http://localhost:3000/delete/${localStorage.getItem('ID')}`).subscribe(e => {
+          console.log("The CV was deleted")
+        })
+        this.router.navigate(['/landing-page']);
+        alert("your CV was deleted ... ")
+        localStorage.clear()
+      }
+
     }
   }
 }

@@ -19,6 +19,22 @@ router.get('/:userId', async(req, res) => {
         res.send(error);
     }
 })
+router.delete('/delete/:userId', (req, res) => {
+    try {
+        let docToDeleteId = req.params.userId;
+        CV.deleteOne({ userId: docToDeleteId }, (err) => {
+            if (err)
+                req.flash('danger', 'An error occured!');
+        });
+        req.flash('success', 'Success Delete');
+        return res('Success Delete')
+    } catch (error) {
+        req.flash('danger', 'An error occured!');
+        res.send(error);
+    }
+});
+
+
 router.post('/add/:id', async(req, res) => {
     let id = req.params.id;
     let newCV = CV({
@@ -42,4 +58,5 @@ router.post('/add/:id', async(req, res) => {
     })
 
 })
+
 module.exports = router;
