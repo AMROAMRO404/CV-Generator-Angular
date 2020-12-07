@@ -11,6 +11,7 @@ export class NameComponent implements OnInit {
   constructor(private cvServiece: PassingCVService) {
   }
   cv: CV;
+
   ngOnInit(): void {
     this.cv = this.cvServiece.getCV();
   }

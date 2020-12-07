@@ -9,17 +9,34 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css']
 })
-export class ResumeComponent implements OnInit {
+export class ResumeComponent {
+  allCV: any;
+  cv: CV;
+  allCVLength: number;
   constructor(private cvServiece: PassingCVService, private http: HttpClient) {
     this.http.get(`http://localhost:3000`).subscribe(e => {
+      console.log("the data from database : ")
       console.log(e)
+      this.allCV = e;
+      this.allCVLength = this.allCV.length;
+      console.log(this.allCV)
+
+      console.log(localStorage.getItem('ID'))
+      for (let i = 0; i < this.allCVLength; i++) {
+        if (this.allCV[i].userId == localStorage.getItem('ID')) {
+          this.cv = this.allCV[i];
+          this.cvServiece.addCV(this.cv);
+          console.log(this.cv)
+          break;
+        }
+      }
     })
+    //console.log(this.allCV)
+
   }
-  cv: CV;
-  ngOnInit(): void {
-    this.cv = this.cvServiece.getCV();
-    console.log(this.cv);
-  }
+
+
+
   // generatePDF() {
   //   var data = document.getElementById('htmlData');
   //   html2canvas(data).then(canvas => {

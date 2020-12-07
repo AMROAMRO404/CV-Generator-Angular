@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormControl, FormBuilder, FormGroup, Validators, FormArrayName, Form } from '@angular/forms';
+import { Router } from '@angular/router';
 import { data } from 'jquery';
+import { Observable } from 'rxjs';
 import { CV } from '../cv';
 import { PassingCVService } from '../passing-cv.service';
 
@@ -29,7 +31,7 @@ export class FormComponent {
 
   //define the constructor and inject the service
   cvForm: FormGroup;
-  constructor(private fb: FormBuilder, private cvServiece: PassingCVService, private http: HttpClient) {
+  constructor(private router: Router, private fb: FormBuilder, private cvServiece: PassingCVService, private http: HttpClient) {
     this.cvForm = this.fb.group({
       fName: this.fName,
       lName: this.lName,
@@ -128,69 +130,39 @@ export class FormComponent {
     );
     this.cvServiece.addCV(this.cv);
     this.http.post(`http://localhost:3000/add/${this.cvId}`, this.cvForm.value).subscribe(e => {
+      console.log("data from database ....")
       console.log(e)
     })
   }
-  //console.log(this.cvForm.value.fName);
-  // loadApiData() {
-  //   this.cvForm.patchValue({
-  //     fName: this.cvServiece.getCV().firstName,
-  //     lName: this.cvServiece.getCV().lastName,
-  //     phone: this.cvServiece.getCV().phone,
-  //     address: this.cvServiece.getCV().address,
-  //     email: this.cvServiece.getCV().email,
-  //     linkedIn: this.cvServiece.getCV().linkedIn,
-  //     socialMedia: this.cvServiece.getCV().socialMedia,
-  //     objective: this.cvServiece.getCV().objective,
-  //     experiences: this.cvServiece.getCV().experience,
-  //     educations: this.cvServiece.getCV().education,
-  //     skills: this.cvServiece.getCV().skills,
-  //     languges: this.cvServiece.getCV().languges,
-  //     certifications: this.cvServiece.getCV().certifications
-  //   })
-  // }
+  cvObject: any;
+  loadApiData() {
+    if (localStorage.getItem('ID')) {
+      this.http.get(`http://localhost:3000/${localStorage.getItem('ID')}`).subscribe(e => {
+        this.cvObject = JSON.parse(JSON.stringify(e));
+        this.cv = new CV(
+          this.cvId,
+          this.cvObject.fName,
+          this.cvObject.lName,
+          this.cvObject.phone,
+          this.cvObject.address,
+          this.cvObject.email,
+          this.cvObject.linkedIn,
+          this.cvObject.socialMedia,
+          this.cvObject.objective,
+          this.cvObject.experiences,
+          this.cvObject.educations,
+          this.cvObject.skills,
+          this.cvObject.languges,
+          this.cvObject.certifications
+        );
+        this.cvServiece.addCV(this.cv);
+        this.router.navigate(['/resume']);
+
+
+      })
+    }
+    else {
+      alert("you dont have cv yet!")
+    }
+  }
 }
-
-
-  // this.fb.group({
-  //   monthYear: ['Feb/2010'],
-  //   degree: ['phd'],
-  //   school: ['MIT'],
-  //   description: ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.']
-  // }),
-  // this.fb.group({
-  //   dateStart: ['1/2/1999'],
-  //   dateEnd: ['1/2/2000'],
-  //   jopTitle: ['programmer'],
-  //   companyName: ['Google'],
-  //   description: ['Lorem ipsum dolor sit amet, consectetur adipisicing elit.']
-  // }),
-  // cvForm = new FormGroup({
-  //   fName: new FormControl(''),
-  //   lName: new FormControl(''),
-  //   phone: new FormControl(''),
-  //   address: new FormControl(''),
-  //   email: new FormControl(''),
-  //   linkedIn: new FormControl(''),
-  //   socialMedia: new FormControl(''),
-  //   objective: new FormControl(''),
-  //   experience: new FormGroup({
-  //     dateStart: new FormControl(''),
-  //     dateEnd: new FormControl(''),
-  //     jopTitle: new FormControl(''),
-  //     companyName: new FormControl(''),
-  //     description: new FormControl('')
-  //   }),
-  //   education: new FormGroup({
-  //     monthYear: new FormControl(''),
-  //     degree: new FormControl(''),
-  //     school: new FormControl(''),
-  //     description: new FormControl('')
-  //   }),
-
-  // });
-
-
-
-
-

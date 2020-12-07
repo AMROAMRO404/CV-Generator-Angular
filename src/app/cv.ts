@@ -1,8 +1,8 @@
 export class CV {
     constructor(
         public id: String,
-        public firstName: String,
-        public lastName: String,
+        public fName: String,
+        public lName: String,
         public phone: number,
         public address: String,
         public email: String,

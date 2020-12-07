@@ -49,6 +49,8 @@ app.use(flash());
 app.use(bodyParser.urlencoded({
     extended: true
 })); // for admin website
+
+
 app.use(bodyParser.json()); // API Request
 app.use(cookieParser());
 

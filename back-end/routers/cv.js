@@ -5,12 +5,23 @@ router.get('/', async(req, res) => {
     await CV.find({}).then(data => {
         res.json(data)
     })
-
 });
+browseById = async(req, res) => {
 
+}
+router.get('/:userId', async(req, res) => {
+    try {
+        let userId = req.params.userId;
+        await CV.findOne({ "userId": userId }).then(data => {
+            return res.json(data)
+        })
+    } catch (error) {
+        res.send(error);
+    }
+})
 router.post('/add/:id', async(req, res) => {
     let id = req.params.id;
-    let newS = CV({
+    let newCV = CV({
         userId: id,
         fName: req.body.fName,
         lName: req.body.lName,

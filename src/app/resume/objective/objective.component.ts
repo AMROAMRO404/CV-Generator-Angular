@@ -14,8 +14,5 @@ export class ObjectiveComponent implements OnInit {
   cv: CV;
   ngOnInit(): void {
     this.cv = this.cvServiece.getCV();
-
   }
-
-
 }
