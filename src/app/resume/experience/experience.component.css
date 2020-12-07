@@ -36,7 +36,11 @@ li {
 }
 
 #date-start {
-    font-size: medium;
+    font-size: large;
+}
+
+#date-end {
+    font-size: large;
 }
 
 #jop-description {

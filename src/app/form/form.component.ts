@@ -138,26 +138,30 @@ export class FormComponent {
   loadApiData() {
     if (localStorage.getItem('ID')) {
       this.http.get(`http://localhost:3000/${localStorage.getItem('ID')}`).subscribe(e => {
-        this.cvObject = JSON.parse(JSON.stringify(e));
-        this.cv = new CV(
-          this.cvId,
-          this.cvObject.fName,
-          this.cvObject.lName,
-          this.cvObject.phone,
-          this.cvObject.address,
-          this.cvObject.email,
-          this.cvObject.linkedIn,
-          this.cvObject.socialMedia,
-          this.cvObject.objective,
-          this.cvObject.experiences,
-          this.cvObject.educations,
-          this.cvObject.skills,
-          this.cvObject.languges,
-          this.cvObject.certifications
-        );
-        this.cvServiece.addCV(this.cv);
-        this.router.navigate(['/resume']);
-
+        if (e) {
+          this.cvObject = JSON.parse(JSON.stringify(e));
+          this.cv = new CV(
+            this.cvId,
+            this.cvObject.fName,
+            this.cvObject.lName,
+            this.cvObject.phone,
+            this.cvObject.address,
+            this.cvObject.email,
+            this.cvObject.linkedIn,
+            this.cvObject.socialMedia,
+            this.cvObject.objective,
+            this.cvObject.experiences,
+            this.cvObject.educations,
+            this.cvObject.skills,
+            this.cvObject.languges,
+            this.cvObject.certifications
+          );
+          this.cvServiece.addCV(this.cv);
+          this.router.navigate(['/resume']);
+        }
+        else {
+          alert("you dont have cv yet!")
+        }
 
       })
     }

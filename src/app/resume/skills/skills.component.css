@@ -1,6 +1,6 @@
 .important-part {
     margin-left: 24px;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 .cv-parts {
@@ -9,4 +9,5 @@
 
 li {
     font-size: larger;
+    text-transform: capitalize;
 }
