@@ -103,7 +103,7 @@ export class EditcvComponent implements OnInit {
         this.http.put(`http://localhost:3000/update/${localStorage.getItem('ID')}`, this.cvFormUpdate.value).subscribe(e => {
           console.log("The CV was updated")
         })
-        this.router.navigate(['/landing-page']);
+        this.router.navigate(['/form']);
         alert("your CV was updated ... ")
       }
 

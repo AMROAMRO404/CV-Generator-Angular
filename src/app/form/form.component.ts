@@ -189,4 +189,13 @@ export class FormComponent {
 
     }
   }
+
+  goToEditComponent() {
+    if (!(localStorage.getItem('ID'))) {
+      alert("You still dont have a CV to delete :) ")
+    }
+    else {
+      this.router.navigate(['/editcv']);
+    }
+  }
 }

@@ -309,7 +309,7 @@
     <div style="padding-bottom: 20px;">
         <button (click)="submit()" routerLink="/resume" [disabled]="!cvForm.valid" type="submit" id="sub" class="btn btn-primary">Submit & Get My CV </button>
         <button (click)="loadApiData()" class="btn btn-success ml-2" type="button">Go to my CV</button>
-        <button class="btn btn-secondary  ml-2" routerLink="/editcv" type="button">Edit my CV</button>
+        <button (click)="goToEditComponent()" class="btn btn-secondary  ml-2" type="button">Edit my CV</button>
         <button (click)="deleteMyCV()" class="btn btn-danger ml-2" type="button">Delete My CV</button>
     </div>
     <!-- {{cvForm.value | json}} (click)="loadApiData()" routerLink="/resume"  -->
