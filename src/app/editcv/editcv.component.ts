@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CV } from '../cv';
 import { FormComponent } from '../form/form.component';
@@ -12,14 +12,14 @@ import { PassingCVService } from '../passing-cv.service';
   styleUrls: ['./editcv.component.css']
 })
 export class EditcvComponent implements OnInit {
-
-  constructor(private router: Router, private fb: FormBuilder, private cvServiece: PassingCVService, private http: HttpClient) { }
-  form: FormComponent;
-
+  editForm: FormGroup;
 
   ngOnInit(): void {
     this.getTheCVToEdit()
   }
+
+  constructor(private router: Router, private fb: FormBuilder, private cvServiece: PassingCVService, private http: HttpClient) { }
+  form: FormComponent;
 
   cv: CV;
   cvId = localStorage.getItem('ID')
@@ -31,6 +31,7 @@ export class EditcvComponent implements OnInit {
       this.cv = this.cvObject;
       console.log(this.cv)
     })
+
   }
 
 

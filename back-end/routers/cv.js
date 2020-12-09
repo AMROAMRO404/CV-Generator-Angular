@@ -6,19 +6,34 @@ router.get('/', async(req, res) => {
         res.json({})
     })
 });
-browseById = async(req, res) => {
 
-}
+//get one cv by user id
 router.get('/:userId', async(req, res) => {
-    try {
-        let userId = req.params.userId;
-        await CV.findOne({ "userId": userId }).then(data => {
-            return res.json(data)
-        })
-    } catch (error) {
-        res.send(error);
-    }
+        try {
+            let userId = req.params.userId;
+            await CV.findOne({ "userId": userId }).then(data => {
+                return res.json(data)
+            })
+        } catch (error) {
+            res.send(error);
+        }
+    })
+    //update the cv
+    // Update employee
+router.put(('/update/:userId'), (req, res) => {
+    CV.findByIdAndUpdate(req.params.userId, {
+        $set: req.body
+    }, (error, data) => {
+        if (error) {
+            console.log(error)
+        } else {
+            res.json(data)
+            console.log('Data updated successfully')
+        }
+    })
 })
+
+//delete one cv by id
 router.delete('/delete/:userId', (req, res) => {
     try {
         let docToDeleteId = req.params.userId;
@@ -34,7 +49,7 @@ router.delete('/delete/:userId', (req, res) => {
     }
 });
 
-
+//save cv route
 router.post('/add/:id', async(req, res) => {
     let id = req.params.id;
     let newCV = CV({

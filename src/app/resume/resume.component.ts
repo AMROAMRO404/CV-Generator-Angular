@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
-import { PassingCVService } from '../passing-cv.service';
+import { Component } from '@angular/core';
 import { CV } from '../cv';
 import { HttpClient } from '@angular/common/http';
 @Component({
