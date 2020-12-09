@@ -106,33 +106,35 @@ export class FormComponent {
   cv: CV;
   cvId: any;
   submit() {
-    if (localStorage.ID) {
-      this.cvId = localStorage.getItem('ID');
+    if (localStorage.getItem('ID')) {
+      alert("You alredy have a CV, you can delete or udate it !")
+      this.router.navigate(['/landing-page']);
     } else {
       this.cvId = this.cvServiece.generateID();
       localStorage.setItem('ID', this.cvId);
+      this.cv = new CV(
+        this.cvId,
+        this.cvForm.value.fName,
+        this.cvForm.value.lName,
+        this.cvForm.value.phone,
+        this.cvForm.value.address,
+        this.cvForm.value.email,
+        this.cvForm.value.linkedIn,
+        this.cvForm.value.socialMedia,
+        this.cvForm.value.objective,
+        this.cvForm.value.experiences,
+        this.cvForm.value.educations,
+        this.cvForm.value.skills,
+        this.cvForm.value.languges,
+        this.cvForm.value.certifications
+      );
+      this.cvServiece.addCV(this.cv);
+      this.http.post(`http://localhost:3000/add/${this.cvId}`, this.cvForm.value).subscribe(e => {
+        console.log("data from database ....")
+        console.log(e)
+      })
     }
-    this.cv = new CV(
-      this.cvId,
-      this.cvForm.value.fName,
-      this.cvForm.value.lName,
-      this.cvForm.value.phone,
-      this.cvForm.value.address,
-      this.cvForm.value.email,
-      this.cvForm.value.linkedIn,
-      this.cvForm.value.socialMedia,
-      this.cvForm.value.objective,
-      this.cvForm.value.experiences,
-      this.cvForm.value.educations,
-      this.cvForm.value.skills,
-      this.cvForm.value.languges,
-      this.cvForm.value.certifications
-    );
-    this.cvServiece.addCV(this.cv);
-    this.http.post(`http://localhost:3000/add/${this.cvId}`, this.cvForm.value).subscribe(e => {
-      console.log("data from database ....")
-      console.log(e)
-    })
+
   }
   cvObject: any;
   loadApiData() {

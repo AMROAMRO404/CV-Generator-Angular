@@ -22,6 +22,7 @@ import { NameComponent } from './resume/cv-header/name/name.component';
 import { AddressPhoneComponent } from './resume/cv-header/address-phone/address-phone.component';
 import { LinksComponent } from './resume/cv-header/links/links.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EditcvComponent } from './editcv/editcv.component';
 
 
 
@@ -45,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     NameComponent,
     AddressPhoneComponent,
     LinksComponent,
+    EditcvComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
       { path: 'landing-page', component: LandingPageComponent },
       { path: 'form', component: FormComponent },
       { path: 'resume', component: ResumeComponent },
+      { path: 'editcv', component: EditcvComponent }
     ])
   ],
   providers: [],

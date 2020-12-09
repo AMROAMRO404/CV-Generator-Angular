@@ -3,7 +3,7 @@ const CV = require('../models/CV')
 
 router.get('/', async(req, res) => {
     await CV.find({}).then(data => {
-        res.json(data)
+        res.json({})
     })
 });
 browseById = async(req, res) => {
