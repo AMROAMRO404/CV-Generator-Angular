@@ -1,0 +1,220 @@
+<form [formGroup]="cvForm" id="myform" class="container">
+    <div class="form-group">
+        <span class="titles">personal informations </span>
+        <div>
+            <label for="input-first-name">First Name</label>
+            <input formControlName="fName" type="text" class="form-control" id="input-first-name" name="first-name" placeholder="Ex: Donald">
+            <!-- <small [class.d-none]="cvForm.get('fName').valid || cvForm.get('fName').untouched" class="text-danger">First name is required</small> -->
+            <div *ngIf="field('fName').invalid && field('fName').touched">
+                <small *ngIf="field('fName').errors?.required" class="text-danger">First name is required</small>
+                <small *ngIf="field('fName').errors?.minlength" class="text-danger">First name must be at least 3 characters</small>
+            </div>
+        </div>
+        <div>
+            <label>Last Name</label>
+            <input formControlName="lName" type="text" class="form-control" id="input-last-name" name="last-name" placeholder="Ex: Trump">
+            <div *ngIf="field('lName').invalid && field('lName').touched">
+                <small *ngIf="field('lName').errors?.required" class="text-danger">Last name is required</small>
+                <small *ngIf="field('lName').errors?.minlength" class="text-danger">Last name must be at least 3 characters</small>
+            </div>
+        </div>
+        <div>
+            <label>Address</label>
+            <input formControlName="address" type="text" class="form-control" id="input-address" name="address" placeholder="Ex: USA">
+            <div *ngIf="field('address').invalid && field('address').touched">
+                <small *ngIf="field('address').errors?.required" class="text-danger">Adress is required</small>
+            </div>
+        </div>
+        <div>
+            <label>Phone</label>
+            <input formControlName="phone" type="text" class="form-control" id="input-phone" name="phone" placeholder="Ex: 0097259924213">
+            <div *ngIf="field('phone').invalid && field('phone').touched">
+                <small *ngIf="field('phone').errors?.required" class="text-danger">Phone is required</small>
+            </div>
+        </div>
+        <div>
+            <label>Email address</label>
+            <input formControlName="email" type="email" class="form-control" id="input-email1" name="email" placeholder="Ex: Trump@gmail.com">
+            <div *ngIf="field('email').invalid && field('email').touched">
+                <small *ngIf="field('email').errors?.required" class="text-danger">Email is required</small>
+            </div>
+        </div>
+        <div>
+            <label>LinkedIn Profile</label>
+            <input formControlName="linkedIn" type="url" class="form-control" id="input-linkedIn" name="linkedIn" placeholder="Ex: https://www.linkedin.com/company/donaldj.trumpforpresidentinc./">
+        </div>
+        <div>
+            <label>Socail Media</label>
+            <input formControlName="socialMedia" type="url" class="form-control" id="input-social-media" name="social-media" placeholder="Ex: https://www.facebook.com/DonaldTrump">
+        </div>
+    </div>
+    <div class="form-group">
+        <span class="titles">Objective </span>
+        <label for="objective-text-area">Write your Objective</label>
+        <textarea formControlName="objective" name="objective" class="form-control" id="objective-text-area" rows="3" placeholder="To replace this text with your own, just click it and start typing. Briefly state your career objective, or summarize what makes you stand out. Use language from the job description as keywords."></textarea>
+        <div *ngIf="field('objective').invalid && field('objective').touched">
+            <small *ngIf="field('objective').errors?.required" class="text-danger">Objective is required</small>
+        </div>
+    </div>
+    <div>
+        <span class="titles">experience </span>
+        <div formArrayName="experiences" id="your-experience">
+            <div *ngFor="let exps of experiences.controls; let i = index">
+                <ng-container [formGroupName]="i">
+                    <span class="sub-title">Your Experience</span>
+                    <div>
+                        <label>Date Start</label>
+                        <input formControlName="dateStart" name="date-start" type="date" class="form-control" id="input-date-start1" placeholder="Ex: 2000/2/22">
+                        <div *ngIf="experiences.controls[i].get('dateStart').invalid && experiences.controls[i].get('dateStart').touched">
+                            <small *ngIf="experiences.controls[i].get('dateStart').errors?.required" class="text-danger">Date Start is required</small>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Date End</label>
+                        <input formControlName="dateEnd" name="date-end" type="date" class="form-control" id="input-date-end1" placeholder="Ex: 2020/2/22">
+                        <div *ngIf="experiences.controls[i].get('dateEnd').invalid && experiences.controls[i].get('dateEnd').touched">
+                            <small *ngIf="experiences.controls[i].get('dateEnd').errors?.required" class="text-danger">Date End is required</small>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Jop Title</label>
+                        <input formControlName="jopTitle" name="jop-title" type="text" class="form-control" id="input-jop-title1" placeholder="Ex: Programmer">
+                        <div *ngIf="experiences.controls[i].get('jopTitle').invalid && experiences.controls[i].get('jopTitle').touched">
+                            <small *ngIf="experiences.controls[i].get('jopTitle').errors?.required" class="text-danger">Jop Title is required</small>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Company</label>
+                        <input formControlName="companyName" name="company" type="text" class="form-control" id="input-company1" placeholder="Ex: Google">
+                        <div *ngIf="experiences.controls[i].get('companyName').invalid && experiences.controls[i].get('companyName').touched">
+                            <small *ngIf="experiences.controls[i].get('companyName').errors?.required" class="text-danger">Company Name is required</small>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Write short description</label>
+                        <textarea formControlName="description" name="description-experience" class="form-control" id="description-experience1" placeholder="Describe your responsibilities and achievements in terms of impact and results. Use examples, but keep it short." rows="3"></textarea>
+                        <div *ngIf="experiences.controls[i].get('description').invalid && experiences.controls[i].get('description').touched">
+                            <small *ngIf="experiences.controls[i].get('description').errors?.required" class="text-danger">Description is required</small>
+                        </div>
+                    </div>
+                    <button (click)="deleteExperience(i)" id="remove-experience" class="btn btn-danger m-lg-1" type="button">Remove Experience</button>
+                </ng-container>
+            </div>
+
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addExperience()" id="add-experience" class="btn btn-success m-lg-1" type="button">Add New Experience</button>
+        </div>
+
+    </div>
+    <div>
+        <span class="titles">education </span>
+        <div formArrayName="educations">
+            <div *ngFor="let edus of educations.controls; let i = index">
+                <ng-container id="your-education" [formGroupName]="i">
+                    <span class="sub-title">Your Education</span>
+                    <div>
+                        <label>Year-Month</label>
+                        <input formControlName="monthYear" name="month-year" type="month" class="form-control" id="input-month-year1" placeholder="Ex: jun 2000">
+                        <div *ngIf="educations.controls[i].get('monthYear').invalid && educations.controls[i].get('monthYear').touched">
+                            <small *ngIf="educations.controls[i].get('monthYear').errors?.required" class="text-danger">Year-Month is required</small>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Degree</label>
+                        <input formControlName="degree" name="degree" type="text" class="form-control" id="input-degree1" placeholder="Ex: PHD">
+                        <div *ngIf="educations.controls[i].get('degree').invalid && educations.controls[i].get('degree').touched">
+                            <small *ngIf="educations.controls[i].get('degree').errors?.required" class="text-danger">Degree is required</small>
+                        </div>
+                    </div>
+                    <div>
+                        <label>School</label>
+                        <input formControlName="school" name="school" type="text" class="form-control" id="input-school1" placeholder="Ex: MIT">
+                        <div *ngIf="educations.controls[i].get('school').invalid && educations.controls[i].get('school').touched">
+                            <small *ngIf="educations.controls[i].get('school').errors?.required" class="text-danger">School is required</small>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Write short description</label>
+                        <textarea formControlName="description" name="description-education" class="form-control" id="description-education1" placeholder="It’s okay to brag about your GPA, awards, and honors. Feel free to summarize your coursework too." rows="3"></textarea>
+                        <div *ngIf="educations.controls[i].get('description').invalid && educations.controls[i].get('description').touched">
+                            <small *ngIf="educations.controls[i].get('description').errors?.required" class="text-danger">Description is required</small>
+                        </div>
+                    </div>
+                    <button (click)="deleteEducation(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Education</button>
+                </ng-container>
+            </div>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addEducation()" id="add-education" class="btn btn-success " type="button">Add New Education</button>
+        </div>
+
+    </div>
+    <div>
+        <span class="titles">skills </span>
+        <div formArrayName="skills">
+            <div *ngFor="let skill of skills.controls; let i = index">
+                <ng-container [formGroupName]="i">
+                    <div>
+                        <label>Skill</label>
+                        <input [formControl]="skills.controls[i]" name="skills" type="text" class="form-control" placeholder="List one of your strengths">
+                        <div *ngIf="skills.controls[i].invalid && skills.controls[i].touched">
+                            <small *ngIf="skills.controls[i].errors?.required" class="text-danger">skill is required</small>
+                        </div>
+                    </div>
+                    <button (click)="deleteSkill(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Skill</button>
+                </ng-container>
+            </div>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addSkills()" id="add-education" class="btn btn-success " type="button">Add New Skill</button>
+        </div>
+
+    </div>
+    <div>
+        <span class="titles">languages </span>
+        <div formArrayName="languges">
+            <div *ngFor="let lang of languges.controls; let i = index">
+                <ng-container [formGroupName]="i">
+                    <div>
+                        <label>Language</label>
+                        <input [formControl]="languges.controls[i]" name="Languages" type="text" class="form-control" placeholder="List one of your languages">
+                        <div *ngIf="languges.controls[i].invalid && languges.controls[i].touched">
+                            <small *ngIf="languges.controls[i].errors?.required" class="text-danger">Languge is required</small>
+                        </div>
+                    </div>
+
+                    <button (click)="deleteLanguage(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove language</button>
+                </ng-container>
+            </div>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addLanguges()" id="add-education" class="btn btn-success " type="button">Add New language</button>
+        </div>
+    </div>
+    <div>
+        <span class="titles">certifications & courses </span>
+        <div formArrayName="certifications">
+            <div *ngFor="let certificate of certifications.controls; let i = index">
+                <ng-container [formGroupName]="i">
+                    <div>
+                        <label>certification & courses</label>
+                        <input [formControl]="certifications.controls[i]" name="c-and-c" type="text" class="form-control" placeholder="List one of your courses or certification">
+                        <div *ngIf="certifications.controls[i].invalid && certifications.controls[i].touched">
+                            <small *ngIf="certifications.controls[i].errors?.required" class="text-danger">certification is required</small>
+                        </div>
+                    </div>
+                    <button (click)=" deleteCertification(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove certification & courses</button>
+                </ng-container>
+            </div>
+
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addCandC()" id="add-education" class="btn btn-success " type="button">Add New certification & courses</button>
+        </div>
+    </div>
+    <div style="padding-bottom: 20px;padding-top: 20px">
+        <button (click)="submit()" routerLink="/resume" [disabled]="!cvForm.valid" type="submit" id="sub" class="btn btn-primary">Update my CV</button>
+    </div>
+    <!-- {{cvForm.value | json}} (click)="loadApiData()" routerLink="/resume"  -->
+</form>
