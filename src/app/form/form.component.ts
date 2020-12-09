@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormBuilder, FormGroup, Validators, FormArrayName, Form } from '@angular/forms';
 import { Router } from '@angular/router';
 import { data } from 'jquery';
@@ -13,6 +13,7 @@ import { PassingCVService } from '../passing-cv.service';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
+
 
   //define the controlers
   fName = new FormControl('', [Validators.required, Validators.minLength(3)]);
@@ -48,6 +49,7 @@ export class FormComponent {
       certifications: this.certifications,
     })
   }
+
   //get the field
   field(field: any) {
     return this.cvForm.get(field);
@@ -109,6 +111,7 @@ export class FormComponent {
     if (localStorage.getItem('ID')) {
       alert("You alredy have a CV, you can delete or udate it !")
       this.router.navigate(['/landing-page']);
+      this.cvServiece.addCV(this.cv);
     } else {
       this.cvId = this.cvServiece.generateID();
       localStorage.setItem('ID', this.cvId);
