@@ -17,9 +17,45 @@ export class EditcvComponent implements OnInit {
   ngOnInit(): void {
     this.getTheCVToEdit()
   }
+  //define the controlers
+  fName = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  lName = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  phone = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  address = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  email = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  linkedIn = new FormControl('');
+  socialMedia = new FormControl('');
+  objective = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  experiences = new FormArray([]);
+  educations = new FormArray([]);
+  skills = new FormArray([]);
+  languges = new FormArray([]);
+  certifications = new FormArray([]);
 
-  constructor(private router: Router, private fb: FormBuilder, private cvServiece: PassingCVService, private http: HttpClient) { }
-  form: FormComponent;
+
+  cvFormUpdate: FormGroup;
+  constructor(private router: Router, private fb: FormBuilder, private cvServiece: PassingCVService, private http: HttpClient) {
+    this.cvFormUpdate = this.fb.group({
+      fName: this.fName,
+      lName: this.lName,
+      phone: this.phone,
+      address: this.address,
+      email: this.email,
+      linkedIn: this.linkedIn,
+      socialMedia: this.socialMedia,
+      objective: this.objective,
+      experiences: this.experiences,
+      educations: this.educations,
+      skills: this.skills,
+      languges: this.languges,
+      certifications: this.certifications,
+    })
+  }
+  //get the field
+  field(field: any) {
+    return this.cvFormUpdate.get(field);
+  }
+
 
   cv: CV;
   cvId = localStorage.getItem('ID')
@@ -30,10 +66,48 @@ export class EditcvComponent implements OnInit {
       this.cvObject = JSON.parse(JSON.stringify(e));
       this.cv = this.cvObject;
       console.log(this.cv)
+      this.fName.setValue(this.cv.fName)
+      this.lName.setValue(this.cv.lName)
+      this.address.setValue(this.cv.address)
+      this.phone.setValue(this.cv.phone)
+      this.email.setValue(this.cv.email)
+      this.linkedIn.setValue(this.cv.linkedIn)
+      this.socialMedia.setValue(this.cv.socialMedia)
+      this.objective.setValue(this.cv.objective)
     })
 
   }
 
+  submit() {
+    if (!(localStorage.getItem('ID'))) {
+      alert("You still dont have a CV to update :) ")
+    } else {
+      if (confirm("Are you sure to update your old CV ?")) {
+        this.cv = new CV(
+          this.cvId,
+          this.cvFormUpdate.value.fName,
+          this.cvFormUpdate.value.lName,
+          this.cvFormUpdate.value.phone,
+          this.cvFormUpdate.value.address,
+          this.cvFormUpdate.value.email,
+          this.cvFormUpdate.value.linkedIn,
+          this.cvFormUpdate.value.socialMedia,
+          this.cvFormUpdate.value.objective,
+          this.cvFormUpdate.value.experiences,
+          this.cvFormUpdate.value.educations,
+          this.cvFormUpdate.value.skills,
+          this.cvFormUpdate.value.languges,
+          this.cvFormUpdate.value.certifications
+        );
+        this.cvServiece.addCV(this.cv);
+        this.http.put(`http://localhost:3000/update/${localStorage.getItem('ID')}`, this.cvFormUpdate.value).subscribe(e => {
+          console.log("The CV was updated")
+        })
+        this.router.navigate(['/landing-page']);
+        alert("your CV was updated ... ")
+      }
 
-
+    }
+    console.log(this.cvFormUpdate.value)
+  }
 }

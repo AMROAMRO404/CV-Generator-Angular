@@ -9,20 +9,37 @@ router.get('/', async(req, res) => {
 
 //get one cv by user id
 router.get('/:userId', async(req, res) => {
-        try {
-            let userId = req.params.userId;
-            await CV.findOne({ "userId": userId }).then(data => {
-                return res.json(data)
-            })
-        } catch (error) {
-            res.send(error);
-        }
-    })
-    //update the cv
-    // Update employee
-router.put(('/update/:userId'), (req, res) => {
-    CV.findByIdAndUpdate(req.params.userId, {
-        $set: req.body
+    try {
+        let userId = req.params.userId;
+        await CV.findOne({ "userId": userId }).then(data => {
+            return res.json(data)
+        })
+    } catch (error) {
+        res.send(error);
+    }
+})
+
+
+//update the cv
+router.put(('/update/:userId'), async(req, res) => {
+    let docToUpdate = req.params.userId;
+    CV.updateOne({ userId: docToUpdate }, {
+        $set: {
+            userId: docToUpdate,
+            fName: req.body.fName,
+            lName: req.body.lName,
+            phone: req.body.phone,
+            address: req.body.address,
+            email: req.body.email,
+            linkedIn: req.body.linkedIn,
+            socialMedia: req.body.socialMedia,
+            objective: req.body.objective,
+            // experiences: req.body.experiences,
+            // educations: req.body.educations,
+            // skills: req.body.skills,
+            // languges: req.body.languges,
+            // certifications: req.body.certifications,
+        },
     }, (error, data) => {
         if (error) {
             console.log(error)
