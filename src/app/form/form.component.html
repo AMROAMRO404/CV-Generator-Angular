@@ -99,7 +99,6 @@
             </div>
             <div id="collapse-three" class="collapse" aria-labelledby="heading-three" data-parent="#cv-parts">
                 <div class="card-body">
-
                     <span class="titles">experience </span>
                     <div formArrayName="experiences" id="your-experience">
                         <div *ngFor="let exps of experiences.controls; let i = index">
@@ -143,7 +142,6 @@
                                 <button (click)="deleteExperience(i)" id="remove-experience" class="btn btn-danger m-lg-1" type="button">Remove Experience</button>
                             </ng-container>
                         </div>
-
                     </div>
                     <div class="buttons-add-remove">
                         <button (click)="addExperience()" id="add-experience" class="btn btn-success m-lg-1" type="button">Add New Experience</button>
@@ -162,7 +160,6 @@
             <div id="collapse-four" class="collapse" aria-labelledby="heading-four" data-parent="#cv-parts">
                 <div class="card-body">
                     <span class="titles">education </span>
-
                     <div formArrayName="educations">
                         <div *ngFor="let edus of educations.controls; let i = index">
                             <ng-container id="your-education" [formGroupName]="i">
@@ -198,7 +195,6 @@
                                 <button (click)="deleteEducation(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Education</button>
                             </ng-container>
                         </div>
-
                     </div>
                     <div class="buttons-add-remove">
                         <button (click)="addEducation()" id="add-education" class="btn btn-success " type="button">Add New Education</button>
@@ -217,7 +213,6 @@
             <div id="collapse-five" class="collapse" aria-labelledby="heading-five" data-parent="#cv-parts">
                 <div class="card-body">
                     <span class="titles">skills </span>
-
                     <div formArrayName="skills">
                         <div *ngFor="let skill of skills.controls; let i = index">
                             <ng-container [formGroupName]="i">
@@ -231,7 +226,6 @@
                                 <button (click)="deleteSkill(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Skill</button>
                             </ng-container>
                         </div>
-
                     </div>
                     <div class="buttons-add-remove">
                         <button (click)="addSkills()" id="add-education" class="btn btn-success " type="button">Add New Skill</button>
@@ -260,7 +254,6 @@
                                         <small *ngIf="languges.controls[i].errors?.required" class="text-danger">Languge is required</small>
                                     </div>
                                 </div>
-
                                 <button (click)="deleteLanguage(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove language</button>
                             </ng-container>
                         </div>
@@ -293,11 +286,9 @@
                                         <small *ngIf="certifications.controls[i].errors?.required" class="text-danger">certification is required</small>
                                     </div>
                                 </div>
-
                                 <button (click)=" deleteCertification(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove certification & courses</button>
                             </ng-container>
                         </div>
-
                     </div>
                     <div class="buttons-add-remove">
                         <button (click)="addCandC()" id="add-education" class="btn btn-success " type="button">Add New certification & courses</button>
@@ -308,7 +299,7 @@
     </div>
     <div style="padding-bottom: 20px;">
         <button (click)="submit()" routerLink="/resume" [disabled]="!cvForm.valid" type="submit" id="sub" class="btn btn-primary">Submit & Get My CV </button>
-        <button (click)="loadApiData()" class="btn btn-success ml-2" type="button">Go to my CV</button>
+        <button (click)="goToMyCV()" class="btn btn-success ml-2" type="button">Go to my CV</button>
         <button (click)="goToEditComponent()" class="btn btn-secondary  ml-2" type="button">Edit my CV</button>
         <button (click)="deleteMyCV()" class="btn btn-danger ml-2" type="button">Delete My CV</button>
     </div>

@@ -55,14 +55,11 @@ export class EditcvComponent implements OnInit {
   field(field: any) {
     return this.cvFormUpdate.get(field);
   }
-
-
   cv: CV;
   cvId = localStorage.getItem('ID')
   cvObject: any;
   getTheCVToEdit() {
     this.http.get(`http://localhost:3000/${this.cvId}`).subscribe(e => {
-      console.log("the data from database : ")
       this.cvObject = JSON.parse(JSON.stringify(e));
       this.cv = this.cvObject;
       console.log(this.cv)
@@ -77,7 +74,6 @@ export class EditcvComponent implements OnInit {
     })
 
   }
-
   submit() {
     if (!(localStorage.getItem('ID'))) {
       alert("You still dont have a CV to update :) ")
@@ -100,14 +96,10 @@ export class EditcvComponent implements OnInit {
           this.cvFormUpdate.value.certifications
         );
         this.cvServiece.addCV(this.cv);
-        this.http.put(`http://localhost:3000/update/${localStorage.getItem('ID')}`, this.cvFormUpdate.value).subscribe(e => {
-          console.log("The CV was updated")
-        })
+        this.cvServiece.editMyCV(this.cvFormUpdate);
         this.router.navigate(['/form']);
         alert("your CV was updated ... ")
       }
-
     }
-    console.log(this.cvFormUpdate.value)
   }
 }

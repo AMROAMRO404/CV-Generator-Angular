@@ -1,20 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormBuilder, FormGroup, Validators, FormArrayName, Form } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormArray, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { data } from 'jquery';
-import { Observable } from 'rxjs';
 import { CV } from '../cv';
 import { PassingCVService } from '../passing-cv.service';
-
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-
-
   //define the controlers
   fName = new FormControl('', [Validators.required, Validators.minLength(3)]);
   lName = new FormControl('', [Validators.required, Validators.minLength(3)]);
@@ -102,8 +97,8 @@ export class FormComponent {
   addCandC() {
     this.certifications.push(new FormControl('', [Validators.required]));
   }
-  //when submit the data
 
+  //when submit the data
   cvData: any;
   cv: CV;
   cvId: any;
@@ -132,56 +127,22 @@ export class FormComponent {
         this.cvForm.value.certifications
       );
       this.cvServiece.addCV(this.cv);
-      this.http.post(`http://localhost:3000/add/${this.cvId}`, this.cvForm.value).subscribe(e => {
-        console.log("data from database ....")
-        console.log(e)
-      })
+      this.cvServiece.postForm(this.cvId, this.cvForm);
     }
 
   }
   cvObject: any;
-  loadApiData() {
-    if (localStorage.getItem('ID')) {
-      this.http.get(`http://localhost:3000/${localStorage.getItem('ID')}`).subscribe(e => {
-        if (e) {
-          this.cvObject = JSON.parse(JSON.stringify(e));
-          this.cv = new CV(
-            this.cvId,
-            this.cvObject.fName,
-            this.cvObject.lName,
-            this.cvObject.phone,
-            this.cvObject.address,
-            this.cvObject.email,
-            this.cvObject.linkedIn,
-            this.cvObject.socialMedia,
-            this.cvObject.objective,
-            this.cvObject.experiences,
-            this.cvObject.educations,
-            this.cvObject.skills,
-            this.cvObject.languges,
-            this.cvObject.certifications
-          );
-          this.cvServiece.addCV(this.cv);
-          this.router.navigate(['/resume']);
-        }
-        else {
-          alert("you dont have a cv yet!")
-        }
-      })
-    }
-    else {
-      alert("you dont have a cv yet!")
-    }
+  goToMyCV() {
+    this.cvServiece.loadApiData(this.cvId, this.cvObject, this.cvServiece, this.router);
   }
+
 
   deleteMyCV() {
     if (!(localStorage.getItem('ID'))) {
       alert("You still dont have a CV to delete :) ")
     } else {
       if (confirm("Are you sure to delete your old CV ?")) {
-        this.http.delete(`http://localhost:3000/delete/${localStorage.getItem('ID')}`).subscribe(e => {
-          console.log("The CV was deleted")
-        })
+        this.cvServiece.deleteMyCV();
         this.router.navigate(['/landing-page']);
         alert("your CV was deleted ... ")
         localStorage.clear()
@@ -192,7 +153,7 @@ export class FormComponent {
 
   goToEditComponent() {
     if (!(localStorage.getItem('ID'))) {
-      alert("You still dont have a CV to delete :) ")
+      alert("You still dont have a CV to update :) ")
     }
     else {
       this.router.navigate(['/editcv']);
