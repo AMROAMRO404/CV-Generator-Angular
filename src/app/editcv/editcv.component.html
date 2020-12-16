@@ -48,6 +48,7 @@
             <input formControlName="socialMedia" type="url" class="form-control" id="input-social-media" name="social-media" placeholder="Ex: https://www.facebook.com/DonaldTrump">
         </div>
     </div>
+    <hr>
     <div class="form-group">
         <span class="titles">Objective </span>
         <label for="objective-text-area">Write your Objective</label>
@@ -56,8 +57,160 @@
             <small *ngIf="field('objective').errors?.required" class="text-danger">Objective is required</small>
         </div>
     </div>
+    <hr>
+    <div>
+        <span class="titles ">experience </span>
+        <div formArrayName="experiences" id="your-experience" *ngFor="let exps of cvFormUpdate.get('experiences')['controls']; let i = index">
+            <ng-container [formGroupName]="i">
+                <span class="sub-title ">Your Experience</span>
+                <div>
+                    <label>Date Start</label>
+                    <input formControlName="dateStart" name="date-start" type="date" class="form-control" id="input-date-start1" placeholder="Ex: 2000/2/22 ">
+                    <div *ngIf="exps.get('dateStart').invalid && exps.get('dateStart').touched">
+                        <small *ngIf="exps.get('dateStart').errors?.required" class="text-danger">Date Start is required</small>
+                    </div>
+                </div>
+                <div>
+                    <label>Date End</label>
+                    <input formControlName="dateEnd" name="date-end" type="date" class="form-control" id="input-date-end1" placeholder="Ex: 2020/2/22 ">
+                    <div *ngIf="exps.get('dateEnd').invalid && exps.get('dateEnd').touched ">
+                        <small *ngIf="exps.get('dateEnd').errors?.required " class="text-danger ">Date End is required</small>
+                    </div>
+                </div>
+                <div>
+                    <label>Jop Title</label>
+                    <input formControlName="jopTitle" name="jop-title" type="text" class="form-control" id="input-jop-title1" placeholder="Ex: Programmer ">
+                    <div *ngIf="exps.get('jopTitle').invalid && exps.get('jopTitle').touched ">
+                        <small *ngIf="exps.get('jopTitle').errors?.required " class="text-danger ">Jop Title is required</small>
+                    </div>
+                </div>
+                <div>
+                    <label>Company</label>
+                    <input formControlName="companyName" name="company" type="text" class="form-control" id="input-company1" placeholder="Ex: Google">
+                    <div *ngIf="exps.get('companyName').invalid && exps.get('companyName').touched">
+                        <small *ngIf="exps.get('companyName').errors?.required" class="text-danger">Company Name is required</small>
+                    </div>
+                </div>
+                <div>
+                    <label>Write short description</label>
+                    <textarea formControlName="description" name="description-experience" class="form-control" id="description-experience1" placeholder="Describe your responsibilities and achievements in terms of impact and results. Use examples,but keep it short." rows="3"></textarea>
+                    <div *ngIf="exps.get('description').invalid && exps.get('description').touched">
+                        <small *ngIf="exps.get('description').errors?.required" class="text-danger">Description is required</small>
+                    </div>
+                </div>
+                <button (click)="deleteExperience(i)" id="remove-experience" class="btn btn-danger m-lg-1" type="button">Remove Experience</button>
+            </ng-container>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addExperience()" id="add-education" class="btn btn-success" type="button">Add New Experience</button>
+        </div>
+        <hr>
+    </div>
+
+    <div>
+        <span class="titles ">education </span>
+        <div formArrayName="educations" *ngFor="let edus of cvFormUpdate.get('educations')['controls']; let i = index">
+            <ng-container id="your-education" [formGroupName]="i">
+                <span class="sub-title ">Your Education</span>
+                <div>
+                    <label>Year-Month</label>
+                    <input formControlName="monthYear" name="month-year" type="month " class="form-control" id="input-month-year1" placeholder="Ex: jun 2000 ">
+                    <div *ngIf="edus.get('monthYear').invalid && edus.get('monthYear').touched">
+                        <small *ngIf="edus.get('monthYear').errors?.required" class="text-danger">Year-Month is required</small>
+                    </div>
+                </div>
+                <div>
+                    <label>Degree</label>
+                    <input formControlName="degree" name="degree" type="text" class="form-control " id="input-degree1" placeholder="Ex: PHD ">
+                    <div *ngIf="edus.get('degree').invalid && edus.get('degree').touched">
+                        <small *ngIf="edus.get('degree').errors?.required" class="text-danger">Degree is required</small>
+                    </div>
+                </div>
+                <div>
+                    <label>School</label>
+                    <input formControlName="school" name="school" type="text" class="form-control" id="input-school1" placeholder="Ex: MIT ">
+                    <div *ngIf="edus.get('school').invalid && edus.get('school').touched ">
+                        <small *ngIf="edus.get('school').errors?.required" class="text-danger">School is required</small>
+                    </div>
+                </div>
+                <div>
+                    <label>Write short description</label>
+                    <textarea formControlName="description" name="description-education" class="form-control" id="description-education1" placeholder="It’s okay to brag about your GPA, awards, and honors. Feel free to summarize your coursework too." rows="3"></textarea>
+                    <div *ngIf="edus.get('description').invalid&&edus.get('description').touched">
+                        <small *ngIf="edus.get('description').errors?.required" class="text-danger">Description is required</small>
+                    </div>
+                </div>
+                <button (click)="deleteEducation(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Education</button>
+            </ng-container>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addEducation()" id="add-education" class="btn btn-success" type="button">Add New Education</button>
+        </div>
+        <hr>
+    </div>
+    <div>
+        <span class="titles ">skills </span>
+        <div formArrayName="skills" *ngFor="let skill of cvFormUpdate.get('skills')['controls']; let i = index ">
+            <ng-container [formGroupName]="i">
+                <div>
+                    <label>Skill</label>
+                    <input [formControl]="skill" name="skills" type="text" class="form-control" placeholder="List one of your strengths">
+                    <div *ngIf="skill.invalid && skill.touched">
+                        <small *ngIf="skill.errors?.required" class="text-danger">skill is required</small>
+                    </div>
+                </div>
+                <button (click)="deleteSkill(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove Skill</button>
+            </ng-container>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addSkills()" id="add-education" class="btn btn-success" type="button">Add New Skill</button>
+        </div>
+        <hr>
+    </div>
+
+    <div>
+        <span class="titles ">languages </span>
+        <div formArrayName="languges" *ngFor="let lang of cvFormUpdate.get('languges')['controls'];let i = index ">
+            <ng-container [formGroupName]="i">
+                <div>
+                    <label>Language</label>
+                    <input [formControl]="lang" name="Languages" type="text" class="form-control" placeholder="List one of your languages">
+                    <div *ngIf="lang.invalid && lang.touched">
+                        <small *ngIf="lang.errors?.required" class="text-danger">Languge is required</small>
+                    </div>
+                </div>
+                <button (click)="deleteLanguage(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button ">Remove language</button>
+            </ng-container>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addLanguges()" id="add-education" class="btn btn-success" type="button">Add New Languge</button>
+        </div>
+        <hr>
+    </div>
+
+    <div>
+        <span class="titles ">certifications & courses </span>
+        <div formArrayName="certifications" *ngFor="let certificate of cvFormUpdate.get('certifications')['controls']; let i = index">
+            <ng-container [formGroupName]="i">
+                <div>
+                    <label>certification & courses</label>
+                    <input [formControl]="certificate" name="c-and-c" type="text" class="form-control" placeholder="List one of your courses or certification">
+                    <div *ngIf="certificate.invalid && certificate.touched">
+                        <small *ngIf="certificate.errors?.required" class="text-danger">certification is required</small>
+                    </div>
+                </div>
+                <button (click)=" deleteCertification(i)" id="remove-education" class="btn btn-danger m-lg-1" type="button">Remove certification & courses</button>
+            </ng-container>
+        </div>
+        <div class="buttons-add-remove">
+            <button (click)="addCandC()" id="add-education" class="btn btn-success" type="button">Add New certification & courses</button>
+        </div>
+        <hr>
+    </div>
+
+
     <div style="padding-bottom: 20px;padding-top: 20px">
         <button (click)="submit()" [disabled]="!cvFormUpdate.valid" type="submit" id="sub" class="btn btn-primary">Update my CV</button>
     </div>
-    <!-- {{cvForm.value | json}} (click)="loadApiData()" routerLink="/resume"  -->
+    <!-- {{cvForm.value | json}} (click)="loadApiData() " routerLink="/resume "  -->
 </form>

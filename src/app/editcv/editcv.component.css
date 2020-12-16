@@ -39,6 +39,11 @@ ul li {
     margin-top: 15px;
 }
 
+hr {
+    opacity: 0.7;
+    border-top: 3px dotted
+}
+
 button {
     margin-right: 15px;
 }

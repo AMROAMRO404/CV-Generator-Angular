@@ -34,11 +34,11 @@ router.put(('/update/:userId'), async(req, res) => {
             linkedIn: req.body.linkedIn,
             socialMedia: req.body.socialMedia,
             objective: req.body.objective,
-            // experiences: req.body.experiences,
-            // educations: req.body.educations,
-            // skills: req.body.skills,
-            // languges: req.body.languges,
-            // certifications: req.body.certifications,
+            experiences: req.body.experiences,
+            educations: req.body.educations,
+            skills: req.body.skills,
+            languges: req.body.languges,
+            certifications: req.body.certifications,
         },
     }, (error, data) => {
         if (error) {
