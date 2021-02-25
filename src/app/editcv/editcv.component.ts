@@ -60,7 +60,7 @@ export class EditcvComponent implements OnInit {
   cvObject: any;
 
   getTheCVToEdit() {
-    this.http.get(`http://localhost:3000/${this.cvId}`).subscribe(e => {
+    this.http.get(`https://cv-generatorserver.herokuapp.com/${this.cvId}`).subscribe(e => {
       this.cvObject = JSON.parse(JSON.stringify(e));
       this.fName.setValue(this.cvObject.fName)
       this.lName.setValue(this.cvObject.lName)

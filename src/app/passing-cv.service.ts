@@ -28,7 +28,7 @@ export class PassingCVService {
     return str;
   }
 
-  url = "http://localhost:3000";
+  url = "https://cv-generatorserver.herokuapp.com";
 
   postForm(cvId, form) {
     this.http.post(`${this.url}/add/${cvId}`, form.value).subscribe(e => {

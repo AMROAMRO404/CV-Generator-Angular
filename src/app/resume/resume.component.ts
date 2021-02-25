@@ -11,7 +11,7 @@ export class ResumeComponent {
   cv: CV;
   cvId = localStorage.getItem('ID')
   constructor(private http: HttpClient) {
-    this.http.get(`http://localhost:3000/${this.cvId}`).subscribe(e => {
+    this.http.get(`https://cv-generatorserver.herokuapp.com/${this.cvId}`).subscribe(e => {
       console.log("the data from database : ")
       this.cvObject = JSON.parse(JSON.stringify(e));
       this.cv = this.cvObject;
